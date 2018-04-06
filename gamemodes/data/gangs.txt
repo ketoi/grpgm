@@ -1,0 +1,43 @@
+#define GANG_COLOR TEXTCOL_GREEN
+#define MAX_GANGS 200
+forward UnInvite(gang,playerid);
+
+enum giitem
+{
+	ganame[128],
+	leader[MAX_PLAYER_NAME],
+	members,
+	gfondas,
+	Float:bustine[3],
+	bool:invited[MAX_PLAYERS],
+	bool:isgang
+}
+
+new gangDB[MAX_GANGS][giitem];
+
+enum gitems
+{
+	pgang,
+	bool:islead
+}
+
+new gplayerDB[MAX_PLAYERS][gitems];
+
+public UnInvite(gang,playerid)
+{
+	gangDB[gang][invited][playerid]=false;
+}
+
+stock SendMessageToGM(gang,color,text[])
+{
+	for(new i=0; i<MAX_PLAYERS; i++)
+	{
+		if(IsPlayerConnected(i))
+		{
+			if(gplayerDB[i][pgang]==gang)
+			{
+				SendClientMessage(i,color,text);
+			}
+		}
+	}
+}

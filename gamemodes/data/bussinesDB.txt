@@ -1,0 +1,22 @@
+forward Payday();
+enum bitem
+{
+	moka,
+	bizkaina,
+	pavadinimas[128],
+	bpinigai,
+	own_name[MAX_PLAYER_NAME],
+	Text3D:busstext
+}
+
+new bussinesDB[400][bitem];
+
+stock CreateBussiness(bmoka,bkaina,bpavadinimas[],Float:x,Float:y,Float:z)
+{
+	new busid = CreatePickupA(1272 , 2,x,y,z);
+	bussinesDB[busid][moka]=bmoka*2;
+	bussinesDB[busid][bizkaina]=bkaina;
+	strmid(bussinesDB[busid][pavadinimas],bpavadinimas,0,128,128);
+	bussinesDB[busid][busstext] = Create3DTextLabel("", Balta, x,y,z,25, 0, 1);
+	return busid;
+}

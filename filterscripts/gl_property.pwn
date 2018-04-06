@@ -497,19 +497,19 @@ CreateProperty( uniqIntId, iconId,  Float:entX, Float:entY, Float:entZ, Float:en
 		propTextInfo[unid] = Text3D:INVALID_3DTEXT_ID;
 		
 		if(p_type == TYPE_HOUSE) {
-		    format(text_info,256,"{FFFFFF}[{88EE88}House{FFFFFF}]");
+		    format(text_info,256,"[House]");
 		    propTextInfo[unid] = Create3DTextLabel(text_info,0x88EE88FF,entX,entY,entZ+0.75,20.0,0,1);
 		}
 		else if(p_type == TYPE_BUSINESS) {
-		    format(text_info,256,"{FFFFFF}[{AAAAFF}Business{FFFFFF}]");
+		    format(text_info,256,"[Business]");
 		    propTextInfo[unid] = Create3DTextLabel(text_info,0xAAAAFFFF,entX,entY,entZ+0.75,20.0,0,1);
 		}
 		else if(p_type == TYPE_BANK) {
-		    format(text_info,256,"{FFFFFF}[{EEEE88}Bank{FFFFFF}]");
+		    format(text_info,256,"[Bank]");
 		    propTextInfo[unid] = Create3DTextLabel(text_info,0xEEEE88FF,entX,entY,entZ+0.75,20.0,0,1);
 		}
 		else if(p_type == TYPE_COP) {
-		    format(text_info,256,"{FFFFFF}[{EEEE88}Police Station{FFFFFF}]");
+		    format(text_info,256,"[Police Station]");
 		    propTextInfo[unid] = Create3DTextLabel(text_info,0xEEEE88FF,entX,entY,entZ+0.75,20.0,0,1);
 		}
 

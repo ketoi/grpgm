@@ -1,0 +1,1569 @@
+new Menu:parduotuve[4], Menu:tuningas[7], Menu:tune[12], Menu:saibos[3], Menu:sptune[4], Menu:lowtune[5], Menu:slamtune[4], Menu:remtune[2], Menu:trtune[7];
+
+stock CreateMenues()
+{
+	parduotuve[0] = CreateMenu("Zero parduotuve:",2,90,150,200,200);
+	if(IsValidMenu(parduotuve[0])) 
+	{
+		SetMenuColumnHeader(parduotuve[0], 0, "Prekiu meniu:");
+		SetMenuColumnHeader(parduotuve[0], 1, "Kaina:");
+	
+		AddMenuItem(parduotuve[0],0,"IR akiniai"); AddMenuItem(parduotuve[0],1,"500 LT");
+		AddMenuItem(parduotuve[0],0,"Fotoaparatas"); AddMenuItem(parduotuve[0],1,"500 LT");
+	}
+	
+	parduotuve[1] = CreateMenu("Turgus:",2,90,150,200,200);
+	if(IsValidMenu(parduotuve[1])) 
+	{
+		SetMenuColumnHeader(parduotuve[1], 0, "Prekiu meniu:");
+		SetMenuColumnHeader(parduotuve[1], 1, "Kaina:");
+	
+		AddMenuItem(parduotuve[1],0,"Gesintuvas"); AddMenuItem(parduotuve[1],1,"300 LT");
+		AddMenuItem(parduotuve[1],0,"Dazu purkstuvas"); AddMenuItem(parduotuve[1],1,"25 LT");
+		AddMenuItem(parduotuve[1],0,"Kastuvas"); AddMenuItem(parduotuve[1],1,"40 LT");
+		AddMenuItem(parduotuve[1],0,"Lazdele"); AddMenuItem(parduotuve[1],1,"65 LT");
+		AddMenuItem(parduotuve[1],0,"Golfo lazda"); AddMenuItem(parduotuve[1],1,"250 LT");
+		AddMenuItem(parduotuve[1],0,"Beisbolo lazda"); AddMenuItem(parduotuve[1],1,"260 LT");
+		AddMenuItem(parduotuve[1],0,"Geles"); AddMenuItem(parduotuve[1],1,"4 LT");
+	}
+
+	parduotuve[2] = CreateMenu("Pigus ginklai:",2,90,150,200,200);
+	if(IsValidMenu(parduotuve[2])) 
+	{
+		SetMenuColumnHeader(parduotuve[2], 0, "Prekiu meniu:");
+		SetMenuColumnHeader(parduotuve[2], 1, "Kaina:");
+	
+		AddMenuItem(parduotuve[2],0,"9mm [50]"); AddMenuItem(parduotuve[2],1,"300 LT");
+		AddMenuItem(parduotuve[2],0,"Medzioklinis [12]"); AddMenuItem(parduotuve[2],1,"170 LT");
+		AddMenuItem(parduotuve[2],0,"Kastetai"); AddMenuItem(parduotuve[2],1,"110 LT");
+                AddMenuItem(parduotuve[2],0,"Rifle"); AddMenuItem(parduotuve[2],1,"500 LT"); 
+	}
+
+	parduotuve[3] = CreateMenu("Zoles seklos:",2,90,150,200,200);
+	if(IsValidMenu(parduotuve[3])) 
+	{
+		SetMenuColumnHeader(parduotuve[3], 0, "Prekiu meniu:");
+		SetMenuColumnHeader(parduotuve[3], 1, "Kaina:");
+	
+		AddMenuItem(parduotuve[3],0,"1 Sekla"); AddMenuItem(parduotuve[3],1,"100 LT");
+		AddMenuItem(parduotuve[3],0,"2 seklos"); AddMenuItem(parduotuve[3],1,"190 LT");
+		AddMenuItem(parduotuve[3],0,"5 seklos"); AddMenuItem(parduotuve[3],1,"450 LT");
+                AddMenuItem(parduotuve[3],0,"10 seklu"); AddMenuItem(parduotuve[3],1,"800 LT"); 
+	}
+
+	tuningas[0] = CreateMenu("Tuningas",2,90,150,150,0);
+	if(IsValidMenu(tuningas[0]))
+	{
+		SetMenuColumnHeader(tuningas[0], 0, "Pasirinktys:");
+		
+		AddMenuItem(tuningas[0], 0, "Spalva"); //tune 0
+		AddMenuItem(tuningas[0], 0, "Nos");    // tune 1
+		AddMenuItem(tuningas[0], 0, "Ratai");   // tune 4
+		AddMenuItem(tuningas[0], 0, "Hidraulika");  // tune 6
+	}
+
+	tuningas[6] = CreateMenu("Tuningas",2,90,150,110,0);
+	if(IsValidMenu(tuningas[6]))
+	{
+		SetMenuColumnHeader(tuningas[6], 0, "Pasirinktys:");
+
+		AddMenuItem(tuningas[6], 0, "Spalva"); //tune 0
+		AddMenuItem(tuningas[6], 0, "Nos");    // tune 1
+		AddMenuItem(tuningas[6], 0, "Ratai");   // tune 4
+		AddMenuItem(tuningas[6], 0, "Hidraulika");  // tune 6
+		AddMenuItem(tuningas[6], 0, "Hood scoop");  // trtune 0
+		AddMenuItem(tuningas[6], 0, "Vents");  // trtune 1
+		AddMenuItem(tuningas[6], 0, "Duslikas");  // trtune 2
+		AddMenuItem(tuningas[6], 0, "Lempos");  // trtune 3
+		AddMenuItem(tuningas[6], 0, "Stogas");  // trtune 4
+		AddMenuItem(tuningas[6], 0, "Spoileris");  // tune 5
+		AddMenuItem(tuningas[6], 0, "Sideskirt");  // trtune 6
+	}
+
+
+
+	tuningas[1] = CreateMenu("Tuningas",2,90,150,150,0);
+	if(IsValidMenu(tuningas[1]))
+	{
+
+		SetMenuColumnHeader(tuningas[1], 0, "Pasirinktys:");
+
+		AddMenuItem(tuningas[1], 0, "Spalva");
+		AddMenuItem(tuningas[1], 0, "PaintJobas");
+		AddMenuItem(tuningas[1], 0, "Nos");
+		AddMenuItem(tuningas[1], 0, "Ratai");
+		AddMenuItem(tuningas[1], 0, "Spoileris");
+		AddMenuItem(tuningas[1], 0, "Hidraulika");
+		AddMenuItem(tuningas[1], 0, "Buferiai");
+   		AddMenuItem(tuningas[1], 0, "SideSkirtai");
+   		AddMenuItem(tuningas[1], 0, "Stogas");
+   		AddMenuItem(tuningas[1], 0, "Duslikai");
+	}	
+
+	tuningas[2] = CreateMenu("SlamVan",2,90,150,150,0);
+	if(IsValidMenu(tuningas[2]))
+	{
+
+		SetMenuColumnHeader(tuningas[2], 0, "Pasirinktys:");
+
+		AddMenuItem(tuningas[2], 0, "Spalva");
+		AddMenuItem(tuningas[2], 0, "PaintJobas");
+		AddMenuItem(tuningas[2], 0, "Nos");
+		AddMenuItem(tuningas[2], 0, "Ratai");
+		AddMenuItem(tuningas[2], 0, "Hidraulika");
+		AddMenuItem(tuningas[2], 0, "Priekinis buferis");   // slamtune[0]
+		AddMenuItem(tuningas[2], 0, "Priekinis bullbar");   // slamtune[1]
+		AddMenuItem(tuningas[2], 0, "Galinis bullbar");     // slamtune[2]
+   		AddMenuItem(tuningas[2], 0, "SideSkirtai");         // slamtune[3]
+   		AddMenuItem(tuningas[2], 0, "Duslikai");             // lowtune[0]
+	}
+
+	tuningas[3] = CreateMenu("Low tune",2,90,150,150,0);
+	if(IsValidMenu(tuningas[3]))
+	{
+
+		SetMenuColumnHeader(tuningas[3], 0, "Pasirinktys:");
+
+		AddMenuItem(tuningas[3], 0, "Spalva");
+		AddMenuItem(tuningas[3], 0, "PaintJobas");
+		AddMenuItem(tuningas[3], 0, "Nos");
+		AddMenuItem(tuningas[3], 0, "Ratai");
+		AddMenuItem(tuningas[3], 0, "Hidraulika");
+		AddMenuItem(tuningas[3], 0, "Buferiai");          // lowtune[1]
+		AddMenuItem(tuningas[3], 0, "Stogas");            // lowtune[2]
+   		AddMenuItem(tuningas[3], 0, "Sideskirt");         // lowtune[3]
+   		AddMenuItem(tuningas[3], 0, "Duslikai");          // lowtune[0]
+	}
+
+	tuningas[4] = CreateMenu("Tornado",2,90,150,150,0);
+	if(IsValidMenu(tuningas[4]))
+	{
+
+		SetMenuColumnHeader(tuningas[4], 0, "Pasirinktys:");
+
+		AddMenuItem(tuningas[4], 0, "Spalva");
+		AddMenuItem(tuningas[4], 0, "PaintJobas");
+		AddMenuItem(tuningas[4], 0, "Nos");
+		AddMenuItem(tuningas[4], 0, "Ratai");
+		AddMenuItem(tuningas[4], 0, "Hidraulika");
+		AddMenuItem(tuningas[4], 0, "Buferiai");          // lowtune[1]
+   		AddMenuItem(tuningas[4], 0, "Sideskirt");         // lowtune[3]
+   		AddMenuItem(tuningas[4], 0, "Duslikai");          // lowtune[0]
+	}
+
+	tuningas[5] = CreateMenu("Remmington",2,90,150,150,0);
+	if(IsValidMenu(tuningas[5]))
+	{
+
+		SetMenuColumnHeader(tuningas[5], 0, "Pasirinktys:");
+
+		AddMenuItem(tuningas[5], 0, "Spalva");
+		AddMenuItem(tuningas[5], 0, "PaintJobas");
+		AddMenuItem(tuningas[5], 0, "Nos");
+		AddMenuItem(tuningas[5], 0, "Ratai");
+		AddMenuItem(tuningas[5], 0, "Hidraulika");
+		AddMenuItem(tuningas[5], 0, "Buferiai");          // lowtune[1]
+		AddMenuItem(tuningas[5], 0, "Misc.");            // remtune[0]
+   		AddMenuItem(tuningas[5], 0, "Sideskirt");         // remtune[1]
+   		AddMenuItem(tuningas[5], 0, "Duslikai");          // lowtune[0]
+	}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	trtune[0] = CreateMenu("Hood",2,90,150,70,70);
+	if(IsValidMenu(trtune[0]))
+	{
+		SetMenuColumnHeader(trtune[0], 0, "Pav:");
+		SetMenuColumnHeader(trtune[0], 1, "Kaina:");
+
+		AddMenuItem(trtune[0], 0, "Champ"); AddMenuItem(trtune[0], 1, "50 LT");
+		AddMenuItem(trtune[0], 0, "Fury"); AddMenuItem(trtune[0], 1, "70 LT");
+		AddMenuItem(trtune[0], 0, "Race"); AddMenuItem(trtune[0], 1, "100 LT");
+		AddMenuItem(trtune[0], 0, "Worx"); AddMenuItem(trtune[0], 1, "120 LT");
+	}
+	
+	trtune[1] = CreateMenu("Vents",2,90,150,70,70);
+	if(IsValidMenu(trtune[1]))
+	{
+		SetMenuColumnHeader(trtune[1], 0, "Pav:");
+		SetMenuColumnHeader(trtune[1], 1, "Kaina:");
+
+		AddMenuItem(trtune[1], 0, "Oval"); AddMenuItem(trtune[1], 1, "60 LT");
+		AddMenuItem(trtune[1], 0, "Square"); AddMenuItem(trtune[1], 1, "50 LT");
+	}
+
+	trtune[2] = CreateMenu("Duslintuvai",2,90,150,70,70);
+	if(IsValidMenu(trtune[2]))
+	{
+		SetMenuColumnHeader(trtune[2], 0, "Pav:");
+		SetMenuColumnHeader(trtune[2], 1, "Kaina:");
+
+		AddMenuItem(trtune[2], 0, "Small"); AddMenuItem(trtune[2], 1, "60 LT");
+		AddMenuItem(trtune[2], 0, "Medium"); AddMenuItem(trtune[2], 1, "80 LT");
+		AddMenuItem(trtune[2], 0, "Large"); AddMenuItem(trtune[2], 1, "100 LT");
+		AddMenuItem(trtune[2], 0, "Twin"); AddMenuItem(trtune[2], 1, "150 LT");
+		AddMenuItem(trtune[2], 0, "Upswept"); AddMenuItem(trtune[2], 1, "200 LT");
+	}
+
+
+	trtune[3] = CreateMenu("Priesrukines",2,90,150,70,70);
+	if(IsValidMenu(trtune[3]))
+	{
+		SetMenuColumnHeader(trtune[3], 0, "Pav:");
+		SetMenuColumnHeader(trtune[3], 1, "Kaina:");
+
+		AddMenuItem(trtune[3], 0, "Round"); AddMenuItem(trtune[3], 1, "40 LT");
+		AddMenuItem(trtune[3], 0, "Square"); AddMenuItem(trtune[3], 1, "20 LT");
+	}
+
+	trtune[4] = CreateMenu("Stogas",2,90,150,70,70);
+	if(IsValidMenu(trtune[4]))
+	{
+		SetMenuColumnHeader(trtune[4], 0, "Pav:");
+		SetMenuColumnHeader(trtune[4], 1, "Kaina:");
+
+		AddMenuItem(trtune[4], 0, "Scoop"); AddMenuItem(trtune[4], 1, "40 LT");
+	}
+
+	trtune[6] = CreateMenu("Sideskirt",2,90,150,70,70);
+	if(IsValidMenu(trtune[6]))
+	{
+		SetMenuColumnHeader(trtune[6], 0, "Pav:");
+		SetMenuColumnHeader(trtune[6], 1, "Kaina:");
+
+		AddMenuItem(trtune[6], 0, "Peleks"); AddMenuItem(trtune[6], 1, "200 LT");
+	}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	slamtune[0] = CreateMenu("Buferis",2,90,150,70,70);
+	if(IsValidMenu(slamtune[0]))
+	{
+		SetMenuColumnHeader(slamtune[0], 0, "Pav:");
+		SetMenuColumnHeader(slamtune[0], 1, "Kaina:");
+
+		AddMenuItem(slamtune[0], 0, "Chromer"); AddMenuItem(slamtune[0], 1, "999 LT");
+	}
+	
+	slamtune[1] = CreateMenu("F Bullbar",2,90,150,70,70);
+	if(IsValidMenu(slamtune[1]))
+	{
+		SetMenuColumnHeader(slamtune[1], 0, "Pav:");
+		SetMenuColumnHeader(slamtune[1], 1, "Kaina:");
+
+		AddMenuItem(slamtune[1], 0, "Chromer"); AddMenuItem(slamtune[1], 1, "999 LT");
+		AddMenuItem(slamtune[1], 0, "Slammin"); AddMenuItem(slamtune[1], 1, "899 LT");
+	}
+	
+	slamtune[2] = CreateMenu("R Bullbar",2,90,150,70,70);
+	if(IsValidMenu(slamtune[2]))
+	{
+		SetMenuColumnHeader(slamtune[2], 0, "Pav:");
+		SetMenuColumnHeader(slamtune[2], 1, "Kaina:");
+
+		AddMenuItem(slamtune[2], 0, "Chromer"); AddMenuItem(slamtune[2], 1, "800 LT");
+		AddMenuItem(slamtune[2], 0, "Slammin"); AddMenuItem(slamtune[2], 1, "750 LT");
+	}
+	
+	slamtune[3] = CreateMenu("Sideskirt",2,90,150,90,70);
+	if(IsValidMenu(slamtune[3]))
+	{
+		SetMenuColumnHeader(slamtune[3], 0, "Pav:");
+		SetMenuColumnHeader(slamtune[3], 1, "Kaina:");
+
+		AddMenuItem(slamtune[3], 0, "Chrome trim"); AddMenuItem(slamtune[3], 1, "400 LT");
+		AddMenuItem(slamtune[3], 0, "Wheel cover"); AddMenuItem(slamtune[3], 1, "450 LT");
+	}
+	
+///////////////////////////////// REMMINGTON TUNE *******************************************************************************
+
+	remtune[0] = CreateMenu("Sideskirt",2,90,150,90,70);
+	if(IsValidMenu(remtune[0]))
+	{
+		SetMenuColumnHeader(remtune[0], 0, "Pav:");
+		SetMenuColumnHeader(remtune[0], 1, "Kaina:");
+
+		AddMenuItem(remtune[0], 0, "Chrome Grill"); AddMenuItem(remtune[0], 1, "470 LT");
+		AddMenuItem(remtune[0], 0, "Chrome Bars"); AddMenuItem(remtune[0], 1, "430 LT");
+		AddMenuItem(remtune[0], 0, "Chrome Lights"); AddMenuItem(remtune[0], 1, "560 LT");
+	}
+
+	remtune[1] = CreateMenu("Sideskirt",2,90,150,90,70);
+	if(IsValidMenu(remtune[1]))
+	{
+		SetMenuColumnHeader(remtune[1], 0, "Pav:");
+		SetMenuColumnHeader(remtune[1], 1, "Kaina:");
+
+		AddMenuItem(remtune[1], 0, "Chrome Flames"); AddMenuItem(remtune[1], 1, "390 LT");
+		AddMenuItem(remtune[1], 0, "Chrome Arches"); AddMenuItem(remtune[1], 1, "390 LT");
+	}
+
+/////////////////////////////LOW TUNE//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	lowtune[0] = CreateMenu("Glusai",2,90,150,70,70);
+	if(IsValidMenu(lowtune[0]))
+	{
+		SetMenuColumnHeader(lowtune[0], 0, "Pav:");
+		SetMenuColumnHeader(lowtune[0], 1, "Kaina:");
+
+		AddMenuItem(lowtune[0], 0, "Chromer"); AddMenuItem(lowtune[0], 1, "1199 LT");
+		AddMenuItem(lowtune[0], 0, "Slammin"); AddMenuItem(lowtune[0], 1, "999 LT");
+	}
+
+	lowtune[1] = CreateMenu("Buferiai",2,90,150,70,70);
+	if(IsValidMenu(lowtune[1]))
+	{
+		SetMenuColumnHeader(lowtune[1], 0, "Pav:");
+		SetMenuColumnHeader(lowtune[1], 1, "Kaina:");
+
+		AddMenuItem(lowtune[1], 0, "Chromer"); AddMenuItem(lowtune[1], 1, "1999 LT");
+		AddMenuItem(lowtune[1], 0, "Slammin"); AddMenuItem(lowtune[1], 1, "1888 LT");
+	}
+
+	lowtune[2] = CreateMenu("Stogas",2,90,150,70,70);
+	if(IsValidMenu(lowtune[2]))
+	{
+		SetMenuColumnHeader(lowtune[2], 0, "Pav:");
+		SetMenuColumnHeader(lowtune[2], 1, "Kaina:");
+
+		AddMenuItem(lowtune[2], 0, "Hardtop"); AddMenuItem(lowtune[2], 1, "1599,99 LT");
+		AddMenuItem(lowtune[2], 0, "Softtop"); AddMenuItem(lowtune[2], 1, "1499,99 LT");
+	}
+	
+	lowtune[3] = CreateMenu("Sideskirt",2,90,150,100,70);
+	if(IsValidMenu(lowtune[3]))
+	{
+		SetMenuColumnHeader(lowtune[3], 0, "Pav:");
+		SetMenuColumnHeader(lowtune[3], 1, "Kaina:");
+
+		AddMenuItem(lowtune[3], 0, "Chrome strip"); AddMenuItem(lowtune[3], 1, "399,99 LT");
+	}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	tune[0] = CreateMenu("Spalva 1",2,90,150,70,0);
+	if(IsValidMenu(tune[0]))
+	{
+	
+		SetMenuColumnHeader(tune[0], 0, "Kaina: 100LT");
+
+		AddMenuItem(tune[0], 0, "Juoda");
+		AddMenuItem(tune[0], 0, "Balta");
+		AddMenuItem(tune[0], 0, "Melyna");
+		AddMenuItem(tune[0], 0, "Raudona");
+		AddMenuItem(tune[0], 0, "Geltona");
+		AddMenuItem(tune[0], 0, "Salotine");
+		AddMenuItem(tune[0], 0, "Zalia");
+		AddMenuItem(tune[0], 0, "Rozine");
+		AddMenuItem(tune[0], 0, "Zydra");
+		AddMenuItem(tune[0], 0, "Purpurine");
+		AddMenuItem(tune[0], 0, "Ruda");
+	}
+
+	tune[1] = CreateMenu("Spalva 2",2,90,150,70,0);
+	if(IsValidMenu(tune[1]))
+	{
+	
+		SetMenuColumnHeader(tune[1], 0, "Kaina: 100LT");
+
+		AddMenuItem(tune[1], 0, "Juoda");
+		AddMenuItem(tune[1], 0, "Balta");
+		AddMenuItem(tune[1], 0, "Melyna");
+		AddMenuItem(tune[1], 0, "Raudona");
+		AddMenuItem(tune[1], 0, "Geltona");
+		AddMenuItem(tune[1], 0, "Salotine");
+		AddMenuItem(tune[1], 0, "Zalia");
+		AddMenuItem(tune[1], 0, "Rozine");
+		AddMenuItem(tune[1], 0, "Zydra");
+		AddMenuItem(tune[1], 0, "Purpurine");
+		AddMenuItem(tune[1], 0, "Ruda");
+	}
+
+	tune[2] = CreateMenu("Paint Job",2,90,150,70,0);
+	if(IsValidMenu(tune[2]))
+	{
+	
+		SetMenuColumnHeader(tune[2], 0, "Kaina: 250 LT");
+
+		AddMenuItem(tune[2], 0, "PaintJob 1");
+		AddMenuItem(tune[2], 0, "PaintJob 2");
+		AddMenuItem(tune[2], 0, "PaintJob 3");
+	}
+
+	tune[3] = CreateMenu("Nos",2,90,150,100,100);
+	if(IsValidMenu(tune[3]))
+	{
+	
+		SetMenuColumnHeader(tune[3], 0, "Nos:");
+		SetMenuColumnHeader(tune[3], 1, "Kaina:");
+
+		AddMenuItem(tune[3], 0, "2 kartai"); AddMenuItem(tune[3], 1, "100 LT");
+		AddMenuItem(tune[3], 0, "5 kartai"); AddMenuItem(tune[3], 1, "250 LT");
+		AddMenuItem(tune[3], 0, "10 kartu"); AddMenuItem(tune[3], 1, "500 LT");
+	}
+	
+	tune[4] = CreateMenu("Lietnykai",2,90,150,70,0);
+	if(IsValidMenu(tune[4]))
+	{
+
+		SetMenuColumnHeader(tune[4], 0, "Tipas:");
+
+		AddMenuItem(tune[4], 0, "Paprasti");
+		AddMenuItem(tune[4], 0, "Sportiniai");
+		AddMenuItem(tune[4], 0, "Old Skool");
+	}
+	
+	tune[5] = CreateMenu("Spoileriai",2,90,150,70,70);
+	if(IsValidMenu(tune[5]))
+	{
+		SetMenuColumnHeader(tune[5], 0, "Pav:");
+        SetMenuColumnHeader(tune[5], 1, "Kaina:");
+
+		AddMenuItem(tune[5], 0, "Pro"); AddMenuItem(tune[5], 1, "100 LT");
+		AddMenuItem(tune[5], 0, "Win"); AddMenuItem(tune[5], 1, "100 LT");
+		AddMenuItem(tune[5], 0, "Drag"); AddMenuItem(tune[5], 1, "100 LT");
+		AddMenuItem(tune[5], 0, "Alpha"); AddMenuItem(tune[5], 1, "100 LT");
+		AddMenuItem(tune[5], 0, "Champ"); AddMenuItem(tune[5], 1, "100 LT");
+		AddMenuItem(tune[5], 0, "Race"); AddMenuItem(tune[5], 1, "100 LT");
+		AddMenuItem(tune[5], 0, "Worx"); AddMenuItem(tune[5], 1, "100 LT");
+		AddMenuItem(tune[5], 0, "Fury"); AddMenuItem(tune[5], 1, "100 LT");
+        AddMenuItem(tune[5], 0, " Alien"); AddMenuItem(tune[5], 1, " 300 LT");
+        AddMenuItem(tune[5], 0, " X-Flow"); AddMenuItem(tune[5], 1, " 300 LT");
+	}
+	
+	tune[6] = CreateMenu("Hidraulika",2,90,150,70,70);
+	if(IsValidMenu(tune[6]))
+	{
+		SetMenuColumnHeader(tune[6], 0, "Pav:");
+		SetMenuColumnHeader(tune[6], 1, "Kaina:");
+
+		AddMenuItem(tune[6], 0, "Hidraulika"); AddMenuItem(tune[6], 1, "1000 LT");
+	}
+	
+	sptune[0] = CreateMenu("Buferiai",2,90,150,70,70);
+	if(IsValidMenu(sptune[0]))
+	{
+		SetMenuColumnHeader(sptune[0], 0, "Pav:");
+		SetMenuColumnHeader(sptune[0], 1, "Kaina:");
+
+		AddMenuItem(sptune[0], 0, "Alien"); AddMenuItem(sptune[0], 1, "1000 LT");
+		AddMenuItem(sptune[0], 0, "X-Flow"); AddMenuItem(sptune[0], 1, "800 LT");
+	}
+	
+	sptune[1] = CreateMenu("Sideskirts",2,90,150,70,70);
+	if(IsValidMenu(sptune[1]))
+	{
+		SetMenuColumnHeader(sptune[1], 0, "Pav:");
+		SetMenuColumnHeader(sptune[1], 1, "Kaina:");
+
+		AddMenuItem(sptune[1], 0, "Alien"); AddMenuItem(sptune[1], 1, "200 LT");
+		AddMenuItem(sptune[1], 0, "X-Flow"); AddMenuItem(sptune[1], 1, "150 LT");
+	}
+	
+	sptune[2] = CreateMenu("Stogas",2,90,150,70,70);
+	if(IsValidMenu(sptune[2]))
+	{
+		SetMenuColumnHeader(sptune[2], 0, "Pav:");
+		SetMenuColumnHeader(sptune[2], 1, "Kaina:");
+
+		AddMenuItem(sptune[2], 0, "Alien"); AddMenuItem(sptune[2], 1, "150 LT");
+		AddMenuItem(sptune[2], 0, "X-Flow"); AddMenuItem(sptune[2], 1, "100 LT");
+	}
+
+	sptune[3] = CreateMenu("Duslikai",2,90,150,70,70);
+	if(IsValidMenu(sptune[3]))
+	{
+		SetMenuColumnHeader(sptune[3], 0, "Pav:");
+		SetMenuColumnHeader(sptune[3], 1, "Kaina:");
+
+		AddMenuItem(sptune[3], 0, "Alien"); AddMenuItem(sptune[3], 1, "400 LT");
+		AddMenuItem(sptune[3], 0, "X-Flow"); AddMenuItem(sptune[3], 1, "300 LT");
+	}
+	
+//////////////////////////////////////////////////////////////////////////////
+
+ 	saibos[0] = CreateMenu("Kalpokai",2,90,150,70,70);
+	if(IsValidMenu(saibos[0]))
+	{
+
+		SetMenuColumnHeader(saibos[0], 0, "Modelis:");
+		SetMenuColumnHeader(saibos[0], 1, "Kaina:");
+
+		AddMenuItem(saibos[0], 0, "Offroad"); AddMenuItem(saibos[0], 1, "200 LT");
+		AddMenuItem(saibos[0], 0, "Import"); AddMenuItem(saibos[0], 1, "200 LT");
+		AddMenuItem(saibos[0], 0, "Atomic"); AddMenuItem(saibos[0], 1, "200 LT");
+		AddMenuItem(saibos[0], 0, "Ahab"); AddMenuItem(saibos[0], 1, "200 LT");
+		AddMenuItem(saibos[0], 0, "Virtual"); AddMenuItem(saibos[0], 1, "200 LT");
+		AddMenuItem(saibos[0], 0, "Access"); AddMenuItem(saibos[0], 1, "200 LT");
+	}
+	
+	saibos[1] = CreateMenu("Lietnykai",2,90,150,70,70);
+	if(IsValidMenu(saibos[1]))
+	{
+
+		SetMenuColumnHeader(saibos[1], 0, "Modelis:");
+		SetMenuColumnHeader(saibos[1], 1, "Kaina:");
+
+		AddMenuItem(saibos[1], 0, "Shadow"); AddMenuItem(saibos[1], 1, "200 LT");
+		AddMenuItem(saibos[1], 0, "Mega"); AddMenuItem(saibos[1], 1, "200 LT");
+		AddMenuItem(saibos[1], 0, "Rimshine"); AddMenuItem(saibos[1], 1, "200 LT");
+		AddMenuItem(saibos[1], 0, "Cutter"); AddMenuItem(saibos[1], 1, "200 LT");
+		AddMenuItem(saibos[1], 0, "Switch"); AddMenuItem(saibos[1], 1, "200 LT");
+		AddMenuItem(saibos[1], 0, "Grove"); AddMenuItem(saibos[1], 1, "200 LT");
+	}
+	
+	saibos[2] = CreateMenu("Blingai",2,90,150,70,70);
+	if(IsValidMenu(saibos[2]))
+	{
+
+		SetMenuColumnHeader(saibos[2], 0, "Modelis:");
+		SetMenuColumnHeader(saibos[2], 1, "Kaina:");
+
+		AddMenuItem(saibos[2], 0, "Wires"); AddMenuItem(saibos[2], 1, "200 LT");
+		AddMenuItem(saibos[2], 0, "Classic"); AddMenuItem(saibos[2], 1, "200 LT");
+		AddMenuItem(saibos[2], 0, "Twist"); AddMenuItem(saibos[2], 1, "200 LT");
+		AddMenuItem(saibos[2], 0, "Dollar"); AddMenuItem(saibos[2], 1, "200 LT");
+		AddMenuItem(saibos[2], 0, "Trance"); AddMenuItem(saibos[2], 1, "200 LT");
+	}
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+stock BuyMenu(playerid,row,Menu:menu)
+{
+	new modelis = GetVehicleModel(GetPlayerVehicleID(playerid));
+	new Menu:dabartinis = GetPlayerMenu(playerid);
+	new mkaina,mid,mkiek,cid,cid2,colid1,colid2,vehid,tun;
+
+	vehid = GetPlayerVehicleID(playerid);
+
+	if(menu == tune[0])
+	{
+		switch(row)
+		{
+			case 0: {colid1 = 0;}
+			case 1: {colid1 = 1;}
+			case 2: {colid1 = 158;}
+			case 3: {colid1 = 151;}
+			case 4: {colid1 = 6;}
+			case 5: {colid1 = 65;}
+			case 6: {colid1 = 252;}
+			case 7: {colid1 = 146;}
+			case 8: {colid1 = 147;}
+			case 9: {colid1 = 148;}
+			case 10: {colid1 = 153;}
+		}
+	vehicleDB[vehid][col1] = colid1;
+	ShowMenuForPlayer(tune[1],playerid);
+	}else
+
+	if(menu == tune[1]) 
+	{
+		switch(row)
+		{
+			case 0: {colid2 = 0; mkaina=100;}
+			case 1: {colid2 = 1; mkaina=100;}
+			case 2: {colid2 = 158; mkaina=100;}
+			case 3: {colid2 = 151; mkaina=100;}
+			case 4: {colid2 = 6; mkaina=100;}
+			case 5: {colid2 = 65; mkaina=100;}
+			case 6: {colid2 = 252; mkaina=100;}
+			case 7: {colid2 = 146; mkaina=100;}
+			case 8: {colid2 = 147; mkaina=100;}
+			case 9: {colid2 = 148; mkaina=100;}
+			case 10: {colid2 = 153; mkaina=100;}
+		}
+		if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	vehicleDB[vehid][col2] = colid2;
+	ChangeVehicleColor(vehid, vehicleDB[vehid][col1],vehicleDB[vehid][col2]);
+	if(playerid!=-1)
+	{
+	    Carlist[playerid][Color1]=vehicleDB[vehid][col1];
+	    Carlist[playerid][Color2]=vehicleDB[vehid][col2];
+	}
+	TogglePlayerControllable(playerid,true);
+	}else
+	
+	if(menu == tune[2])
+	{
+	    switch(row)
+	    {
+	        case 0: {cid = 0; mkaina=250;}
+	        case 1: {cid = 1; mkaina=250;}
+	        case 2: {cid = 2; mkaina=250;}
+	    }
+	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	vehicleDB[vehid][paintjob] = cid;
+    ChangeVehiclePaintjob(vehid, vehicleDB[vehid][paintjob]);
+    Carlist[playerid][Paintjob] = vehicleDB[vehid][paintjob];
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+	if(menu == tune[3])
+	{
+	    switch(row)
+	    {
+	        case 0: {mkaina=100; cid=1009;}
+	        case 1: {mkaina=250; cid=1008;}
+	        case 2: {mkaina=500; cid=1010;}
+	    }
+		if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+    TogglePlayerControllable(playerid,true);
+	}else
+
+	if(menu == tune[4])
+	{
+	    switch(row)
+	    {
+	        case 0: {menu = saibos[0];}
+	        case 1: {menu = saibos[1];}
+	        case 2: {menu = saibos[2];}
+	    }
+    ShowMenuForPlayer(menu,playerid);
+	}else
+	
+	if(menu == tune[5])  ///////////////////////// SPOILER /////////////////////////////////////
+	{
+	if(modelis == 478 || modelis == 400){SendClientMessage(playerid, COLOR_RED, "* Pasirinkta modifikacija siai masinai netinka!"); TogglePlayerControllable(playerid,true); return 1;}
+	tun = -1;
+	cid = -1;
+	    switch(row)
+	    {
+	        case 0: {cid = 1000; mkaina=100;}
+	        case 1: {cid = 1001; mkaina=100;}
+	        case 2: {cid = 1002; mkaina=100;}
+	        case 3: {cid = 1003; mkaina=100;}
+	        case 4: {cid = 1014; mkaina=100;}
+	        case 5: {cid = 1015; mkaina=100;}
+	        case 6: {cid = 1016; mkaina=100;}
+	        case 7: {cid = 1023; mkaina=100;}
+	        case 8: {tun = 0;}
+	        case 9: {tun = 1;}
+	    }
+
+	if(tun == -1){
+    	if(GetPlayerMoneyA(playerid) < mkaina)
+			{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+			}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);}
+	else if(modelis == 558 && tun == 0){cid = 1164; mkaina = 300;}
+	else if(modelis == 558 && tun == 1){cid = 1163; mkaina = 300;}
+	else if(modelis == 559 && tun == 0){cid = 1162; mkaina = 300;}
+	else if(modelis == 559 && tun == 1){cid = 1158; mkaina = 300;}
+	else if(modelis == 560 && tun == 0){cid = 1138; mkaina = 300;}
+	else if(modelis == 560 && tun == 1){cid = 1139; mkaina = 300;}
+	else if(modelis == 561 && tun == 0){cid = 1158; mkaina = 300;}
+	else if(modelis == 561 && tun == 1){cid = 1160; mkaina = 300;}
+	else if(modelis == 562 && tun == 0){cid = 1147; mkaina = 300;}
+	else if(modelis == 562 && tun == 1){cid = 1146; mkaina = 300;}
+	else if(modelis == 565 && tun == 0){cid = 1149; mkaina = 300;}
+	else if(modelis == 565 && tun == 1){cid = 1150; mkaina = 300;}
+	if(cid == -1)
+		{
+		SendClientMessage(playerid, COLOR_RED, "* Pasirinkta modifikacija siai masinai netinka!");
+		TogglePlayerControllable(playerid,true);
+		HideMenuForPlayer(dabartinis, playerid); return 1;
+		}
+		if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	TogglePlayerControllable(playerid,true);
+	HideMenuForPlayer(dabartinis, playerid);
+	}else
+	
+	
+	if(menu == tune[6])
+	{
+	    switch(row)
+	    {
+	        case 0: {cid = 1087; mkaina = 750;}
+	    }
+	    	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	HideMenuForPlayer(dabartinis,playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+	if(menu == sptune[0])       ////////////////////////////  FRONT  &  REAR  BUFFER  ////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {tun = 0;}
+	        case 1: {tun = 1;}
+	    }
+ 	if(modelis == 558 && tun == 0){cid = 1166; cid2 = 1168; mkaina = 1000;}
+	else if(modelis == 558 && tun == 1){cid = 1165; cid2 = 1167; mkaina = 800;}
+	else if(modelis == 559 && tun == 0){cid = 1159; cid2 = 1160; mkaina = 1000;}
+	else if(modelis == 559 && tun == 1){cid = 1173; cid2 = 1161; mkaina = 800;}
+	else if(modelis == 560 && tun == 0){cid = 1169; cid2 = 1141; mkaina = 1000;}
+	else if(modelis == 560 && tun == 1){cid = 1170; cid2 = 1140; mkaina = 800;}
+	else if(modelis == 561 && tun == 0){cid = 1155; cid2 = 1154; mkaina = 1000;}
+	else if(modelis == 561 && tun == 1){cid = 1157; cid2 = 1156; mkaina = 800;}
+	else if(modelis == 562 && tun == 0){cid = 1171; cid2 = 1149; mkaina = 1000;}
+	else if(modelis == 562 && tun == 1){cid = 1172; cid2 = 1148; mkaina = 800;}
+	else if(modelis == 565 && tun == 0){cid = 1153; cid2 = 1150; mkaina = 1000;}
+	else if(modelis == 565 && tun == 1){cid = 1152; cid2 = 1151; mkaina = 800;}
+	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	AddVehicleComponent(vehid, cid2);
+	Modinimas(playerid,vehid,cid2);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+	
+	if(menu == sptune[1])       ////////////////////////////////  SIDESKIRTS  ////////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {tun = 0;}
+	        case 1: {tun = 1;}
+	    }
+ 	if(modelis == 558 && tun == 0){cid = 1090; cid2 = 1094; mkaina = 200;}
+	else if(modelis == 558 && tun == 1){cid = 1093; cid2 = 1095; mkaina = 150;}
+	else if(modelis == 559 && tun == 0){cid = 1071; cid2 = 1069; mkaina = 200;}
+	else if(modelis == 559 && tun == 1){cid = 1072; cid2 = 1070; mkaina = 150;}
+	else if(modelis == 560 && tun == 0){cid = 1026; cid2 = 1027; mkaina = 200;}
+	else if(modelis == 560 && tun == 1){cid = 1030; cid2 = 1031; mkaina = 150;}
+	else if(modelis == 561 && tun == 0){cid = 1056; cid2 = 1062; mkaina = 200;}
+	else if(modelis == 561 && tun == 1){cid = 1057; cid2 = 1063; mkaina = 150;}
+	else if(modelis == 562 && tun == 0){cid = 1036; cid2 = 1040; mkaina = 200;}
+	else if(modelis == 562 && tun == 1){cid = 1039; cid2 = 1041; mkaina = 150;}
+	else if(modelis == 565 && tun == 0){cid = 1047; cid2 = 1051; mkaina = 200;}
+	else if(modelis == 565 && tun == 1){cid = 1048; cid2 = 1052; mkaina = 150;}
+	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	AddVehicleComponent(vehid, cid2);
+	Modinimas(playerid,vehid,cid2);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+	
+	if(menu == sptune[2])       ////////////////////////////  STOGAI  ////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {tun = 0;}
+	        case 1: {tun = 1;}
+	    }
+ 	if(modelis == 558 && tun == 0){cid = 1088; mkaina = 150;}
+	else if(modelis == 558 && tun == 1){cid = 1091; mkaina = 100;}
+	else if(modelis == 559 && tun == 0){cid = 1067; mkaina = 150;}
+	else if(modelis == 559 && tun == 1){cid = 1068; mkaina = 100;}
+	else if(modelis == 560 && tun == 0){cid = 1032; mkaina = 150;}
+	else if(modelis == 560 && tun == 1){cid = 1033; mkaina = 100;}
+	else if(modelis == 561 && tun == 0){cid = 1055; mkaina = 150;}
+	else if(modelis == 561 && tun == 1){cid = 1061; mkaina = 100;}
+	else if(modelis == 562 && tun == 0){cid = 1038; mkaina = 150;}
+	else if(modelis == 562 && tun == 1){cid = 1035; mkaina = 100;}
+	else if(modelis == 565 && tun == 0){cid = 1054; mkaina = 150;}
+	else if(modelis == 565 && tun == 1){cid = 1053; mkaina = 100;}
+	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	HideMenuForPlayer(dabartinis,playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+
+	if(menu == sptune[3])       ////////////////////////////  DUSLIAI  ////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {tun = 0;}
+	        case 1: {tun = 1;}
+	    }
+ 	if(modelis == 558 && tun == 0){cid = 1092; mkaina = 400;}
+	else if(modelis == 558 && tun == 1){cid = 1089; mkaina = 300;}
+	else if(modelis == 559 && tun == 0){cid = 1065; mkaina = 400;}
+	else if(modelis == 559 && tun == 1){cid = 1066; mkaina = 300;}
+	else if(modelis == 560 && tun == 0){cid = 1028; mkaina = 400;}
+	else if(modelis == 560 && tun == 1){cid = 1029; mkaina = 300;}
+	else if(modelis == 561 && tun == 0){cid = 1064; mkaina = 400;}
+	else if(modelis == 561 && tun == 1){cid = 1059; mkaina = 300;}
+	else if(modelis == 562 && tun == 0){cid = 1034; mkaina = 400;}
+	else if(modelis == 562 && tun == 1){cid = 1037; mkaina = 300;}
+	else if(modelis == 565 && tun == 0){cid = 1046; mkaina = 400;}
+	else if(modelis == 565 && tun == 1){cid = 1045; mkaina = 300;}
+	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	HideMenuForPlayer(dabartinis,playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+//////////////////////////////////////////////////////////////////////LOWRIDERS///////////////////////////////////////////////////////////////////
+
+
+
+	if(menu == slamtune[0])       ////////////////////////////  SLAMVAN BUFFER  ////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {cid = 1117; mkaina = 999;}
+	    }
+	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	HideMenuForPlayer(dabartinis,playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+	
+	if(menu == slamtune[1])       ////////////////////////////  SLAMVAN F bullbar  ////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {tun = 1115; mkaina = 999;}
+	        case 1: {tun = 1116; mkaina = 899;}
+	    }
+	    	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, tun);
+	Modinimas(playerid,vehid,tun);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+	if(menu == slamtune[2])       ////////////////////////////  SLAMVAN R bullbar  ////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {tun = 1109; mkaina = 800;}
+	        case 1: {tun = 1110; mkaina = 750;}
+	    }
+	 if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, tun);
+	Modinimas(playerid,vehid,tun);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+	if(menu == slamtune[3])       ////////////////////////////  SLAMVAN SIDESKIRT  ////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {cid = 1118; cid2 = 1120; mkaina = 400;}
+	        case 1: {cid = 1119; cid2 = 1121; mkaina = 450;}
+	    }
+	    if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	AddVehicleComponent(vehid, cid2);
+	Modinimas(playerid,vehid,cid2);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+////////////////////////////////////////////////////////    TRANSFENDER     ////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+///////////////////////////////////////////////////////LOWTUNE///////////////////////////////////////////////////////////
+
+
+	if(menu == lowtune[0])       ////////////////////////////  DUSLIKAI  ////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {tun = 0; mkaina = 1199;}
+	        case 1: {tun = 1; mkaina = 999;}
+	    }
+ 	if(modelis == 558 && tun == 0){cid = 1104;}
+	else if(modelis == 558 && tun == 1){cid = 1105;}
+	else if(modelis == 567 && tun == 0){cid = 1129;}
+	else if(modelis == 567 && tun == 1){cid = 1132;}
+	else if(modelis == 576 && tun == 0){cid = 1136;}
+	else if(modelis == 576 && tun == 1){cid = 1135;}
+	else if(modelis == 534 && tun == 0){cid = 1126;}
+	else if(modelis == 534 && tun == 1){cid = 1127;}
+	else if(modelis == 535 && tun == 0){cid = 1113;}
+	else if(modelis == 535 && tun == 1){cid = 1114;}
+	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+
+	if(menu == lowtune[1])       ////////////////////////////  BUFERIAI  ////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {tun = 0; mkaina = 1999;}
+	        case 1: {tun = 1; mkaina = 1888;}
+	    }
+ 	if(modelis == 536 && tun == 0){cid = 1182; cid2 = 1184;}
+	else if(modelis == 536 && tun == 1){cid = 1181; cid2 = 1183;}
+	else if(modelis == 567 && tun == 0){cid = 1189; cid2 = 1187;}
+	else if(modelis == 567 && tun == 1){cid = 1188; cid2 = 1186;}
+	else if(modelis == 576 && tun == 0){cid = 1191; cid2 = 1192;}
+	else if(modelis == 576 && tun == 1){cid = 1190; cid2 = 1193;}
+	else if(modelis == 534 && tun == 0){cid = 1179; cid2 = 1180;}
+	else if(modelis == 534 && tun == 1){cid = 1178; cid2 = 1185;}
+	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	AddVehicleComponent(vehid, cid2);
+	Modinimas(playerid,vehid,cid2);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+
+	if(menu == lowtune[2])       ////////////////////////////  STOGAS  ////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {tun = 0; mkaina = 1600;}
+	        case 1: {tun = 1; mkaina = 1500;}
+	    }
+ 	if(modelis == 536 && tun == 0){cid = 1128;}
+	else if(modelis == 536 && tun == 1){cid = 1103;}
+	else if(modelis == 567 && tun == 0){cid = 1130;}
+	else if(modelis == 567 && tun == 1){cid = 1131;}
+
+	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+
+
+	if(menu == lowtune[3])       ////////////////////////////  SIDE SKIRT  ////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {tun = 0; mkaina = 400;}
+	    }
+ 	if(modelis == 536 && tun == 0){cid = 1107; cid2 = 1108;}
+	else if(modelis == 567 && tun == 0){cid = 1102; cid2 = 1133;}
+	else if(modelis == 576 && tun == 0){cid = 1134; cid2 = 1137;}
+
+    if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	AddVehicleComponent(vehid, cid2);
+	Modinimas(playerid,vehid,cid2);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+		if(menu == remtune[0])       ////////////////////////////  REMMINGTON MISC  ////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {tun = 0; mkaina = 470;}
+	        case 1: {tun = 1; mkaina = 430;}
+	        case 2: {tun = 2; mkaina = 560;}
+	    }
+ 	if(tun == 0){cid = 1100;}
+	else if(tun == 1){cid = 1123;}
+	else if(tun == 2){cid = 1125;}
+
+if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+		if(menu == remtune[1])       ////////////////////////////  REMMINGTON Sideskirt  ////////////////////////////////////
+	{
+	    switch(row)
+	    {
+	        case 0: {tun = 0; mkaina = 390;}
+	        case 1: {tun = 1; mkaina = 390;}
+	    }
+ 	if(tun == 0){cid = 1101; cid2 = 1122;}
+	else if(tun == 1){cid = 1124; cid2 = 1106;}
+
+	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	AddVehicleComponent(vehid, cid2);
+	Modinimas(playerid,vehid,cid2);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+
+
+
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	if(menu == saibos[0])
+	{
+	    switch(row)
+	    {
+	        case 0: {mkaina=200; cid=1025;}
+	        case 1: {mkaina=200; cid=1082;}
+	        case 2: {mkaina=200; cid=1085;}
+	        case 3: {mkaina=200; cid=1096;}
+	        case 4: {mkaina=200; cid=1097;}
+   	        case 5: {mkaina=200; cid=1098;}
+	    }
+	    if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+	if(menu == saibos[1])
+	{
+	    switch(row)
+	    {
+	        case 0: {mkaina=200; cid=1073;}
+	        case 1: {mkaina=200; cid=1074;}
+	        case 2: {mkaina=200; cid=1075;}
+	        case 3: {mkaina=200; cid=1079;}
+	        case 4: {mkaina=200; cid=1080;}
+   	        case 5: {mkaina=200; cid=1081;}
+	    }
+	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+	
+	if(menu == saibos[2])
+	{
+	    switch(row)
+	    {
+	        case 0: {mkaina=200; cid=1076;}
+	        case 1: {mkaina=200; cid=1077;}
+	        case 2: {mkaina=200; cid=1078;}
+	        case 3: {mkaina=200; cid=1083;}
+	        case 4: {mkaina=200; cid=1084;}
+	    }
+	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		HideMenuForPlayer(dabartinis,playerid);
+		TogglePlayerControllable(playerid,true);
+		return 1;
+	}
+	AddVehicleComponent(vehid, cid);
+	Modinimas(playerid,vehid,cid);
+	HideMenuForPlayer(dabartinis, playerid);
+    TogglePlayerControllable(playerid,true);
+	}else
+
+	if(menu == tuningas[0]) 
+	{
+		switch(row)
+		{
+			case 0: {menu = tune[0];}
+			case 1: {menu = tune[3];}
+			case 2: {menu = tune[4];}
+			case 3: {menu = tune[6];}
+		}
+	ShowMenuForPlayer(menu,playerid);
+	}else
+
+	if(menu == tuningas[1]) 
+	{
+		switch(row)
+		{
+			case 0: {menu = tune[0];}
+			case 1: {menu = tune[2];}
+			case 2: {menu = tune[3];}
+			case 3: {menu = tune[4];}
+			case 4: {menu = tune[5];}
+			case 5: {menu = tune[6];}
+			case 6: {menu = sptune[0];}
+			case 7: {menu = sptune[1];}
+			case 8: {menu = sptune[2];}
+			case 9: {menu = sptune[3];}
+		}
+	ShowMenuForPlayer(menu,playerid);
+	}else
+	
+		if(menu == tuningas[2])
+	{
+		switch(row)
+		{
+			case 0: {menu = tune[0];}
+			case 1: {menu = tune[2];}
+			case 2: {menu = tune[3];}
+			case 3: {menu = tune[4];}
+			case 4: {menu = tune[6];}
+			case 5: {menu = slamtune[0];}
+			case 6: {menu = slamtune[1];}
+			case 7: {menu = slamtune[2];}
+			case 8: {menu = slamtune[3];}
+			case 9: {menu = lowtune[0];}
+		}
+	ShowMenuForPlayer(menu,playerid);
+	}else
+
+		if(menu == tuningas[3])
+	{
+		switch(row)
+		{
+			case 0: {menu = tune[0];}
+			case 1: {menu = tune[2];}
+			case 2: {menu = tune[3];}
+			case 3: {menu = tune[4];}
+			case 4: {menu = tune[6];}
+			case 5: {menu = lowtune[1];}
+			case 6: {menu = lowtune[2];}
+			case 7: {menu = lowtune[3];}
+			case 9: {menu = lowtune[0];}
+		}
+	ShowMenuForPlayer(menu,playerid);
+	}else
+	
+		if(menu == tuningas[4])
+	{
+		switch(row)
+		{
+			case 0: {menu = tune[0];}
+			case 1: {menu = tune[2];}
+			case 2: {menu = tune[3];}
+			case 3: {menu = tune[4];}
+			case 4: {menu = tune[6];}
+			case 5: {menu = lowtune[1];}
+			case 6: {menu = lowtune[3];}
+			case 7: {menu = lowtune[0];}
+		}
+	ShowMenuForPlayer(menu,playerid);
+	}else
+
+		if(menu == tuningas[5])
+	{
+		switch(row)
+		{
+			case 0: {menu = tune[0];}
+			case 1: {menu = tune[2];}
+			case 2: {menu = tune[3];}
+			case 3: {menu = tune[4];}
+			case 4: {menu = tune[6];}
+			case 5: {menu = lowtune[1];}
+			case 6: {menu = remtune[0];}
+			case 7: {menu = remtune[1];}
+			case 8: {menu = lowtune[0];}
+		}
+	ShowMenuForPlayer(menu,playerid);
+	}else
+
+	if(menu == tuningas[6])
+	{
+		switch(row)
+		{
+			case 0: {menu = tune[0];}
+			case 1: {menu = tune[3];}
+			case 2: {menu = tune[4];}
+			case 3: {menu = tune[6];}
+			case 4: {menu = trtune[0];}
+			case 5: {menu = trtune[1];}
+			case 6: {menu = trtune[2];}
+			case 7: {menu = trtune[3];}
+			case 8: {menu = trtune[4];}
+			case 9: {menu = tune[5];}
+			case 10: {menu = trtune[6];}
+		}
+	ShowMenuForPlayer(menu,playerid);
+	}else
+	
+	if(menu == trtune[0])
+	{
+        if(modelis == 496 || modelis == 401 || modelis == 518 || modelis == 589 || modelis == 492  || modelis == 546 || modelis == 551  || modelis == 516 || modelis == 600 || modelis == 426 || modelis == 489 || modelis == 550 || modelis == 549 || modelis == 420 || modelis == 540 || modelis == 478 || modelis == 529)
+		{
+			switch(row)
+			{
+				case 0: {cid = 1004; mkaina = 50;}
+				case 1: {cid = 1005; mkaina = 70;}
+				case 2: {cid = 1011; mkaina = 100;}
+				case 3: {cid = 1012; mkaina = 120;}
+			}
+			if(GetPlayerMoneyA(playerid) < mkaina)
+			{
+				SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+				HideMenuForPlayer(dabartinis,playerid);
+				TogglePlayerControllable(playerid,true);
+				return 1;
+			}
+			AddVehicleComponent(vehid, cid);
+			Modinimas(playerid,vehid,cid);
+			HideMenuForPlayer(dabartinis, playerid);
+		    TogglePlayerControllable(playerid,true);
+		}
+		else {SendClientMessage(playerid, COLOR_RED, "* Pasirinkta modifikacija siai masinai netinka!");}
+		TogglePlayerControllable(playerid,true);
+		HideMenuForPlayer(dabartinis, playerid);
+	}else
+
+
+
+	if(menu == trtune[1])
+	{
+		if(modelis == 496 || modelis == 401 || modelis == 518 || modelis ==542 || modelis ==589 || modelis ==585 || modelis ==546 || modelis ==517 || modelis ==603 || modelis ==547 || modelis ==439 || modelis ==550 || modelis ==549 || modelis ==540)
+			{
+				switch(row)
+				{
+					case 0: {cid = 1142; cid2 = 1143; mkaina = 60;}
+					case 1: {cid = 1144; cid2 = 1145; mkaina = 50;}
+				}
+				if(GetPlayerMoneyA(playerid) < mkaina)
+					{
+						SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+						HideMenuForPlayer(dabartinis,playerid);
+						TogglePlayerControllable(playerid,true);
+						return 1;
+					}
+					AddVehicleComponent(vehid, cid);
+					Modinimas(playerid,vehid,cid);
+					AddVehicleComponent(vehid, cid2);
+					Modinimas(playerid,vehid,cid2);
+					HideMenuForPlayer(dabartinis, playerid);
+				    TogglePlayerControllable(playerid,true);
+			}
+		else {SendClientMessage(playerid, COLOR_RED, "* Pasirinkta modifikacija siai masinai netinka!");}
+		TogglePlayerControllable(playerid,true);
+		HideMenuForPlayer(menu, playerid);
+	}else
+	
+	if(menu == trtune[2])
+	{
+	    if(modelis == 496 || modelis == 401 || modelis == 422 || modelis == 518 || modelis == 527 || modelis == 415 || modelis == 542 || modelis == 589 || modelis == 585 || modelis == 546 || modelis == 400 || modelis == 517 || modelis == 410 || modelis == 551 || modelis == 500 || modelis == 418)
+	        {
+				switch(row)
+				{
+					case 0: {cid = 1022; mkaina = 60;}
+					case 1: {cid = 1021; mkaina = 80;}
+					case 2: {cid = 1020; mkaina = 100;}
+					case 3: {cid = 1019; mkaina = 150;}
+					case 4: {cid = 1018; mkaina = 200;}
+				}
+				if(GetPlayerMoneyA(playerid) < mkaina)
+					{
+						SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+						HideMenuForPlayer(dabartinis,playerid);
+						TogglePlayerControllable(playerid,true);
+						return 1;
+					}
+					AddVehicleComponent(vehid, cid);
+					Modinimas(playerid,vehid,cid);
+					HideMenuForPlayer(dabartinis, playerid);
+				    TogglePlayerControllable(playerid,true);
+			}
+		else if(modelis == 516 || modelis == 404 || modelis == 603 || modelis == 600 || modelis == 426 || modelis == 436 || modelis == 547 || modelis == 489 || modelis == 405 || modelis == 580 || modelis == 550 || modelis == 549 || modelis == 420 || modelis == 540 || modelis == 491 || modelis == 478 || modelis == 529 || modelis == 477)
+	        {
+				switch(row)
+				{
+					case 0: {cid = 1022; mkaina = 60;}
+					case 1: {cid = 1021; mkaina = 80;}
+					case 2: {cid = 1020; mkaina = 100;}
+					case 3: {cid = 1019; mkaina = 150;}
+					case 4: {cid = 1018; mkaina = 200;}
+				}
+				if(GetPlayerMoneyA(playerid) < mkaina)
+					{
+						SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+						HideMenuForPlayer(dabartinis,playerid);
+						TogglePlayerControllable(playerid,true);
+						return 1;
+					}
+					AddVehicleComponent(vehid, cid);
+					Modinimas(playerid,vehid,cid);
+					HideMenuForPlayer(dabartinis, playerid);
+				    TogglePlayerControllable(playerid,true);
+			}
+		else {SendClientMessage(playerid, COLOR_RED, "* Pasirinkta modifikacija siai masinai netinka!");}
+		TogglePlayerControllable(playerid,true);
+		HideMenuForPlayer(dabartinis, playerid);
+	}else
+	
+	if(menu == trtune[3])
+	{
+	    if(modelis == 422 || modelis == 401 || modelis == 518 || modelis == 589 || modelis == 585 || modelis == 546 || modelis == 400 || modelis == 410 || modelis == 500 || modelis == 404 || modelis == 603 || modelis == 600 || modelis == 436 || modelis == 489 || modelis == 439 || modelis == 540 || modelis == 478)
+	        {
+				switch(row)
+				{
+					case 0: {cid = 1013; mkaina = 40;}
+					case 1: {cid = 1024; mkaina = 20;}
+				}
+				if(GetPlayerMoneyA(playerid) < mkaina)
+					{
+						SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+						HideMenuForPlayer(dabartinis,playerid);
+						TogglePlayerControllable(playerid,true);
+						return 1;
+					}
+					AddVehicleComponent(vehid, cid);
+					Modinimas(playerid,vehid,cid);
+					HideMenuForPlayer(dabartinis, playerid);
+				    TogglePlayerControllable(playerid,true);
+			}
+		else {SendClientMessage(playerid, COLOR_RED, "* Pasirinkta modifikacija siai masinai netinka!");}
+		TogglePlayerControllable(playerid,true);
+		HideMenuForPlayer(dabartinis, playerid);
+	}else
+	
+	if(menu == trtune[4])
+	{
+	    if(modelis == 496 || modelis == 401 || modelis == 518 || modelis == 589 || modelis == 585 || modelis == 492 || modelis == 546 || modelis == 551 || modelis == 418 || modelis == 603 || modelis == 600 || modelis == 426 || modelis == 436 || modelis == 489 || modelis == 580 || modelis == 550 || modelis == 540 || modelis == 529 || modelis == 477)
+	        {
+				switch(row)
+				{
+					case 0: {cid = 1006; mkaina = 40;}
+				}
+				if(GetPlayerMoneyA(playerid) < mkaina)
+					{
+						SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+						HideMenuForPlayer(dabartinis,playerid);
+						TogglePlayerControllable(playerid,true);
+						return 1;
+					}
+					AddVehicleComponent(vehid, cid);
+					Modinimas(playerid,vehid,cid);
+					HideMenuForPlayer(dabartinis, playerid);
+				    TogglePlayerControllable(playerid,true);
+			}
+		else {SendClientMessage(playerid, COLOR_RED, "* Pasirinkta modifikacija siai masinai netinka!");}
+		TogglePlayerControllable(playerid,true);
+		HideMenuForPlayer(dabartinis, playerid);
+	}else
+	        
+	if(menu == trtune[6])
+	{
+	    if(modelis == 496 || modelis == 422 || modelis == 401 || modelis == 518 || modelis == 527 || modelis == 415 || modelis == 589 || modelis == 585 || modelis == 546 || modelis == 517 || modelis == 410 || modelis == 516 || modelis == 404 || modelis == 603 || modelis == 600 || modelis == 436 || modelis == 580 || modelis == 439 || modelis == 549 || modelis == 540 || modelis == 491 || modelis == 529 || modelis == 477)
+	        {
+				switch(row)
+				{
+					case 0: {cid = 1007; cid2 = 1017; mkaina = 40;}
+				}
+				if(GetPlayerMoneyA(playerid) < mkaina)
+			{
+				SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+				HideMenuForPlayer(dabartinis,playerid);
+				TogglePlayerControllable(playerid,true);
+				return 1;
+			}
+			AddVehicleComponent(vehid, cid);
+			Modinimas(playerid,vehid,cid);
+			AddVehicleComponent(vehid, cid2);
+			Modinimas(playerid,vehid,cid2);
+			HideMenuForPlayer(dabartinis, playerid);
+		    TogglePlayerControllable(playerid,true);
+			}
+		else {SendClientMessage(playerid, COLOR_RED, "* Pasirinkta modifikacija siai masinai netinka!");}
+		TogglePlayerControllable(playerid,true);
+		HideMenuForPlayer(menu, playerid);
+	}else
+	        
+	
+	if(menu == parduotuve[0]) 
+	{
+		switch(row)
+		{
+			case 0: {mkaina=500; mid=45; mkiek=1;}
+			case 1: {mkaina=500; mid=43; mkiek=10;}
+		}
+	ShowMenuForPlayer(menu,playerid);
+	}else
+	
+	if(menu == parduotuve[1]) 
+	{
+		switch(row)
+		{
+			case 0: {mkaina=300; mid=42; mkiek=60;}
+			case 1: {mkaina=25; mid=41; mkiek=80;}
+			case 2: {mkaina=40; mid=6; mkiek=1;}
+			case 3: {mkaina=65; mid=15; mkiek=1;}
+			case 4: {mkaina=250; mid=2; mkiek=1;}
+			case 5: {mkaina=260; mid=5; mkiek=1;}
+			case 6: {mkaina=4; mid=14; mkiek=1;}
+		}
+	ShowMenuForPlayer(menu,playerid);
+	}else
+
+	if(menu == parduotuve[2]) 
+	{
+		switch(row)
+		{
+			case 0: {mkaina=300; mid=22; mkiek=50;}
+			case 1: {mkaina=170; mid=25; mkiek=20;}
+			case 2: {mkaina=110; mid=1; mkiek=1;}
+            case 3: {mkaina=500; mid=33; mkiek=10;}
+		}
+	ShowMenuForPlayer(menu,playerid);
+	}
+
+	if(menu == parduotuve[3]) 
+	{
+		switch(row)
+		{
+			case 0: {mkaina=100; playerDB[playerid][seklos] += 1;}
+			case 1: {mkaina=190; playerDB[playerid][seklos] += 2;}
+			case 2: {mkaina=450; playerDB[playerid][seklos] += 5;}
+		        case 3: {mkaina=800; playerDB[playerid][seklos] += 10;}
+		}
+	ShowMenuForPlayer(menu,playerid);
+	}
+
+	if(GetPlayerMoneyA(playerid) < mkaina)
+	{
+		SendClientMessage(playerid,TEXTCOL_BLUE,"Jums nepakanka pinigu.");
+		ShowMenuForPlayer(menu,playerid);
+		return 1;
+	}
+
+	GivePlayerWeapon(playerid,mid,mkiek);
+	GivePlayerMoneyA(playerid,-mkaina);
+	return 1;
+}
+
+stock ShowBuyMenu(playerid,buy_menu_id)
+{
+	TogglePlayerControllable(playerid,false);
+	ShowMenuForPlayer(parduotuve[buy_menu_id],playerid);
+}
+
+stock ShowTuningMenu(playerid,buy_menu_id)
+{
+	TogglePlayerControllable(playerid,false);
+	ShowMenuForPlayer(tuningas[buy_menu_id],playerid);
+}

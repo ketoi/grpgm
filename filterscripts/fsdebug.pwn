@@ -1,12 +1,9 @@
 /* SA:MP PAWN Debug -
- *  Debugging filterscript used
+ *  Debugging Filterscript used
  *  for creation of gamemode.
  *
  *  Simon Campbell
  *  10/03/2007, 6:31pm
- *
- *  17/11/2011
- *    Updated to 0.5d which supports SA:MP 0.3d
 */
 
 //==============================================================================
@@ -23,7 +20,7 @@
 #define KEY_LEFT    65408
 #define KEY_RIGHT   128
 
-#define DEBUG_VERSION   "0.5d"
+#define DEBUG_VERSION   "0.5c"
 
 #define SKIN_SELECT   	true
 #define	VEHI_SELECT   	true
@@ -1269,6 +1266,7 @@ public OnFilterScriptInit()
 		pObjectRate[ i ][ OBJ_RATE_MOVE ] = 1.0;
 	}
 
+	AllowAdminTeleport(1);
 }
 
 public OnFilterScriptExit()
@@ -1349,19 +1347,12 @@ public OnPlayerConnect(playerid)
     curPlayerCamD[playerid][CMODE] = CMODE_A;
     curPlayerCamD[playerid][RATE]  = 2.0;
 
+    #if ADMINS_ONLY == false
+	AllowPlayerTeleport(playerid, 1);
+	#endif
+
 	return 0;
 }
-
-public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ) {
-	#if ADMINS_ONLY == true
-	if (IsPlayerAdmin(playerid)) {
-	#endif
-	SetPlayerPosFindZ(playerid, fX, fY, fZ);
-	#if ADMINS_ONLY == true
-	}
-	#endif
-}
-
 
 //==============================================================================
 

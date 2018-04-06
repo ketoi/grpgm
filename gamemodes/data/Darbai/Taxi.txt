@@ -1,0 +1,23 @@
+enum titem
+{
+	taksistas,
+	Float:Start[3],
+	bool:imti,
+}
+new taxiDB[MAX_PLAYERS][titem];
+new keleivis[MAX_PLAYERS];
+
+stock GetDriver(vehicleid)
+{
+	for(new playerid = 0; playerid<MAX_PLAYERS;playerid++) 
+	{
+		if(IsPlayerConnected(playerid))
+		{
+			if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+			{
+				if(IsPlayerInVehicle(playerid,vehicleid)) return playerid;
+			}
+		}
+	}
+	return INVALID_PLAYER_ID;
+}

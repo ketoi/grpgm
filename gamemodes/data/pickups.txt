@@ -1,0 +1,416 @@
+enum pdata
+{
+policininkas,
+medikas,
+mechanikas,
+taksi,
+radistas,
+kareivis,
+swatas,
+kontrabandininkas,
+cosanostragauja,
+grovestreetgauja,
+ftb,
+rcisveziotojas,
+kroviniuvezikas,
+gaisrininkas,
+kurjeris,
+siukslevezys,
+kunigas,
+limuzininkas,
+traukinys,
+	// Iëjimai, iðëjimai
+    	iejimasipdmalunsparniu,
+    	isejimasispdmalunsparniu,
+	iejimasiarmija,
+	isejimasisarmijos,
+	kareivioginklai,
+	ftbginklai,
+	degaline,
+	bankas,
+	mokyklaa,
+	//Iejimai
+	ledu,
+	maxim,
+	mediku,
+	aikste,
+	seimo,
+	strip,
+	policu,
+	kovu,
+	mechanik,
+	bokso,
+	klubo,
+	ginklu,
+	viesbu,
+	drabuziu,
+	//Iðejimai
+	ledu1,
+	maxim1,
+	mediku1,
+	medikua1,
+	aikste1,
+	seimo1,
+	strip1,
+	policu1,
+	kovu1,
+	mechanik1,
+	bokso1,
+	klubo1,
+	ginklu1,
+	viesbu1,
+	drabuziu1,
+	//Iðejimai
+	policininkoginklai,
+	skins,
+	kontra,
+	kontra1,
+	kamera,
+	kamera2,
+	lytiespakeitimas,
+	rumai,
+	atm,
+	//vmap,
+	ligonine,
+	seimukas,
+	operatore,
+	backine,
+	autoalga,
+	pridavimas,
+	telikai,
+	telikatv,
+	seimas,
+	pautai,
+	pautatv,
+	autobusas,
+	namai,
+	fotikas,
+	parasutas,
+	grovestreetginklai,
+	cosanostraginklai,
+	kmakma,
+	valgo,
+	valgo1,
+	valgo2,
+	valgo3,
+	valgo4,
+	valgo5,
+	valgo6,
+	valgo7,
+	valgo12,
+	valgo13,
+	valgo14,
+	valgo15,
+	valgo16,
+	valgo17,
+	valgo20,
+	valgo21,
+	valgo22,
+	valgo23,
+	valgo24,
+	valgo25,
+	valgo26,
+	valgo27,
+	valgo28,
+	valgo29,
+	baudap,
+	kioski,
+	narkotikai,
+	seklide,
+	zolyte,
+	zinios,
+	hamham,
+	stadgalai,
+	faraicype,
+	gerimai,
+	lvcype,
+	lvment,
+	lvfur,
+	vmpapild,
+	gaisrine,
+	pilotas,
+	boksas,
+	SKL,
+	loterija,
+	maitinimas,
+	bizniss,
+	valgis,
+	stadbzn,
+	swatuginklai,
+	ginklushopas,
+	algos,
+	pasop,
+	dilerd,
+	muitine1,
+	muitine2,
+	muitine3,
+	muitine4,
+	narkgun,
+	KF
+}
+new pickups[2][pdata];
+enum entritem
+{
+	bool:IsEntrence,
+	interior,
+	Float:coordinates[3]
+}
+new EntrenceDB[400][entritem];
+
+stock OutputPickupDebugInfo()
+{
+	printf("Pickup Info:");
+	printf("Degalines: %i - %i", pickups[0][degaline],pickups[1][degaline]);
+	printf("Mokykla: %i", pickups[0][mokykla]);
+	printf("I banka: %i, is banko: %i",pickups[0][bankas],pickups[1][bankas]);
+	printf("Draudimas: %i",pickups[0][draudimas]);
+	printf("Darbai:");
+	printf("Policininku: %i, Mediku: %i, Mechaniku: %i, Taksistu: %i, Radistas: %i",Kareivis: %i",Swatas: %i,Kontrabandininkas: %i,Cosa Nostra: %i,GroveStreet: %i,FTB: %i",pickups[0][policininkas],pickups[0][medikas],pickups[0][taksi],pickups[0][radistas],pickups[0][kareivis],pickups[0][swatas],pickups[0][kontrabandininkas],pickups[0][cosanostragauja],pickups[0][grovestreetgauja],pickups[0][ftb]);
+	printf("RCIsveziotojas: %i, KroviniuVezikas: %i, Gaisrininkas: %i, Kurjeris: %i, Siukslevezys: %i",Kunigas: %i",Limuzininkas: %i,Traukinys: %i",pickups[0][rcisveziotojas],pickups[0][kroviniuvezikas],pickups[0][gaisrininkas],pickups[0][kurjeris],pickups[0][siukslevezys],pickups[0][kunigas],pickups[0][limuzininkas],pickups[0][traukinys]);
+	printf("Namai: %i - %i",pickups[0][namai],pickups[1][namai]);
+	printf("Narkotikai: %i - %i",pickups[0][narkotikai],pickups[1][narkotikai]);
+	printf("I stadiona: %i; is: %i, Degalai stadione: %i",pickups[0][stadionas],pickups[1][stadionas],pickups[0][stadgalai]);
+}
+
+stock CreateEntrance(Float:x,Float:y,Float:z,target_interior,Float:targer_x,Float:targer_y,Float:targer_z)
+{
+	new entre = CreatePickupA(1559 ,2,Float:x,Float:y,Float:z);
+	EntrenceDB[entre][IsEntrence]=true;
+	EntrenceDB[entre][coordinates][0]=targer_x;
+	EntrenceDB[entre][coordinates][1]=targer_y;
+	EntrenceDB[entre][coordinates][2]=targer_z;
+	EntrenceDB[entre][interior]=target_interior;
+
+}
+
+stock LoadPickups()
+{
+
+	pickups[0][namai]=CreatePickupA(1273 ,2,-2027.5883,-41.1353,38.8047); // Namas prie degalinës, vm 1
+	CreatePickupA(1273 ,2, -2721.1619,924.0791,67.5938); // Prie kontrabandos1
+	CreatePickupA(1273 ,2, -2712.7090,852.8315,70.7031); // Prie kontrabandos2
+	CreatePickupA(1273 ,2, -2671.1360,927.4315,79.7031); // Prie kontrabandos3
+	CreatePickupA(1273 ,2, -2641.1299,935.5951,71.9531); // Prie kontrabandos4
+	CreatePickupA(1273 ,2, -2654.1106,841.7734,64.0078); // Prie kontrabandos5
+	CreatePickupA(1273 ,2, -2698.8674,803.0813,49.9703); // Prie kontrabandos6
+	CreatePickupA(1273 ,2, -2687.6782,803.0825,49.9766); // Prie kontrabandos7
+	CreatePickupA(1273 ,2, -2659.9773,803.0926,49.9766); // Prie kontrabandos8
+	CreatePickupA(1273 ,2, -2731.5974,723.7013,41.2734); // Prie kontrabandos9
+	CreatePickupA(1273 ,2, -2723.4653,722.8594,41.2660); // Prie kontrabandos10
+	CreatePickupA(1273 ,2, -2710.8340,722.8365,39.7188); // Prie kontrabandos11
+	CreatePickupA(1273 ,2, -2706.8577,722.8489,37.5391); // Prie kontrabandos12
+	CreatePickupA(1273 ,2, -2686.1389,722.8513,32.2247); // Prie kontrabandos13
+	CreatePickupA(1273 ,2, -2678.0437,722.2345,28.5986); // Prie kontrabandos14
+	CreatePickupA(1273 ,2, -2665.5195,722.2525,27.9624); // Prie kontrabandos15
+	CreatePickupA(1273 ,2, -2661.5190,722.2539,27.9624); // Prie kontrabandos16
+	CreatePickupA(1273 ,2, -2642.1372,728.0237,27.9609); // Prie kontrabandos17
+	CreatePickupA(1273 ,2, -2656.7144,986.0013,64.9913); // Prie kontrabandos18
+	CreatePickupA(1273 ,2, -2710.6782,967.6119,54.4609); // Prie kontrabandos19
+	CreatePickupA(1273 ,2, -2108.5952,4.4154,35.9172); // Prie VM namas1
+	CreatePickupA(1273 ,2, -2108.5891,-22.5588,35.9172); // Prie VM namas2
+	CreatePickupA(1273 ,2, -2108.6375,-49.2968,35.9172); // Prie VM namas3
+	CreatePickupA(1273 ,2, -2144.4004,-44.2144,35.9572); // Prie VM namas4
+	CreatePickupA(1273 ,2, -2144.3938,-17.5864,35.9572); // Prie VM namas5
+	CreatePickupA(1273 ,2, -2395.6531,-152.6900,37.0301); // Namas prie Taksi
+	CreatePickupA(1273 ,2, -2395.6846,-90.9926,37.0302); // Namas prie Taks2
+	CreatePickupA(1273 ,2, -2399.2197,75.2258,35.8248); // Namas prie Taks3
+	CreatePickupA(1273 ,2, -2397.2217,97.5608,36.8630); // Namas prie Taks4
+	CreatePickupA(1273 ,2, -2394.6025,124.3605,36.9904); // Namas prie Taks5
+	CreatePickupA(1273 ,2, -2399.2593,151.9229,35.9509); // Namas prie Taks6
+	CreatePickupA(1273 ,2, -1985.7070,-38.3098,35.9624); // Namas prie VM sankryþos
+	CreatePickupA(1273 ,2, -2306.6133,386.1896,36.8620); // Namas prie netoli maðinø turgaus
+	CreatePickupA(1273 ,2, -2217.2688,577.1996,35.1719); // Namas prie maðinø turgaus 1
+	CreatePickupA(1273 ,2, -2301.8794,579.4503,34.4350); // Namas prie maðinø turgaus 2
+	CreatePickupA(1273 ,2, -2320.0891,579.3254,31.1293); // Namas prie maðinø turgaus 4
+	CreatePickupA(1273 ,2, -2338.4409,579.2324,27.8288); // Namas prie maðinø turgaus 5
+	CreatePickupA(1273 ,2, -2356.7136,579.7452,24.8906); // Namas prie maðinø turgaus 6
+	CreatePickupA(1273 ,2, -2373.3079,595.7529,27.6931); // Namas prie maðinø turgaus 7
+	CreatePickupA(1273 ,2, -2373.4290,614.1416,31.0113); // Namas prie maðinø turgaus 7
+	CreatePickupA(1273 ,2, -2372.9504,632.3699,34.2929); // Namas prie maðinø turgaus 8
+	CreatePickupA(1273 ,2, -2372.7148,643.9799,35.1719); // Namas prie maðinø turgaus 9
+
+
+	pickups[1][namai]=CreatePickupA(1273 ,2, -2144.3945,9.1634,35.9572); // Prie VM namas6
+
+	pickups[0][kioski]=CreatePickupA(1274 ,2,-1993.2715,85.9331,27.6875);//Centre...
+	pickups[1][kioski]=CreatePickupA(1274 ,2,-1993.2715,85.9331,27.6875); //Prie armijos...
+	
+
+	// Darbai su direktoriaus pakvietimu
+	pickups[0][policininkas]=CreatePickupA(1275 ,2,-1616.1359,685.1605,7.4000); // Policijos Ásidarbinimas
+	pickups[0][medikas]=CreatePickupA(1275 ,2,-1978.4917,479.8800,37.0323); // Medikø ásidarbinimas
+	pickups[0][mechanikas]=CreatePickupA(1275 ,2,-1797.8176,760.1562,24.9700); // Mechanikø ásidarbinimas
+	pickups[0][taksi]=CreatePickupA(1275 ,2,-2401.1243,-39.8987,35.5525); // Taksi ásidarbinimas
+	pickups[0][radistas]=CreatePickupA(1275 ,2,-2521.3306,-624.8800,132.7832); // Radistø ásidarbinimas
+	pickups[0][kareivis]=CreatePickupA(1275 ,2,-1539.1675,416.1315,11.2899); // Kareiviø ásidarbinimas
+	pickups[0][swatas]=CreatePickupA(1275 ,2,-2076.7422,1421.8497,7.1172); // SWAT ásidarbinimas
+	pickups[0][kontrabandininkas]=CreatePickupA(1275 ,2,-2692.0564,613.5293,14.6000); // Kontrabandininkø Ásidarbinimas
+	pickups[0][cosanostragauja] = CreatePickupA(1275 ,2,-712.9279,955.1819,12.3106); // Cosa Nostra Ásidarbinimas
+	pickups[0][grovestreetgauja] = CreatePickupA(1275 ,2,-2385.6680,2216.1887,4.9844); // GroveStreet Ásidarbinimas
+	pickups[0][ftb] = CreatePickupA(1275 ,2,-2914.2991,458.2323,4.9141); // FTB ásidarbinimas
+
+
+	// Darbai be Direktoriaus pakvietimu
+	pickups[0][rcisveziotojas]=CreatePickupA(1275 ,2,-1968.7037,620.4575,35.1719); // RC iðveþiotojø Ásidarbinimas
+	pickups[0][kroviniuvezikas]=CreatePickupA(1275 ,2,-1874.0005,-218.1002,18.3750); // Kroviniø Veþikø ásidarbinimas
+	pickups[0][gaisrininkas]=CreatePickupA(1275 ,2,-2026.9095,67.2337,28.6916); // Gaisrininø ásidarbinimas
+	pickups[0][kurjeris]=CreatePickupA(1275 ,2,-1830.2550,108.7068,15.1172); // Kurjeriø ásidarbinimas
+	pickups[0][siukslevezys]=CreatePickupA(1275 ,2,-1862.2554,-145.7664,11.8984); // Ðiûkðleveþiø ásidarbinimas
+	pickups[0][kunigas]=CreatePickupA(1275 ,2,-1988.8683,1115.3738,54.4774); // Kunigo ásidarbinimas
+	pickups[0][limuzininkas]=CreatePickupA(1275 ,2,-1754.1794,963.5311,24.8828); // Limuzininko ásidarbinimas	
+	pickups[0][traukinys]=CreatePickupA(1275 ,2,-1968.5797,110.0083,27.6875); // Traukiniø ásidarbinimas
+   	pickups[0][pilotas]=CreatePickupA(1275 ,2,-1545.0684,-440.5768,6.0000); // piloto darbas
+	pickups[0][autobusas]=CreatePickupA(19132 ,2,-2665.2715,-2.3064,6.1328); //Autobusisto darbas
+
+	
+	// Iëjimai, iðëjimai
+	pickups[0][iejimasiarmija]=CreatePickupA(19197 ,2,-1525.4329,417.9310,7.1875); // Áëjimas á armijos buveinæ, kur yra ásidarbinimas
+	pickups[0][isejimasisarmijos]=CreatePickupA(19197 ,2,-1525.4065,418.9516,11.2454); // Iðëjimas á armijos buveinæ, kur yra ásidarbinimas
+
+	pickups[0][iejimasipdmalunsparniu]=CreatePickupA(19197 ,2,-1594.2111,716.1740,-4.9063); // Áëjimas á PD virðø, kur yra malûnsparniai
+	pickups[0][isejimasispdmalunsparniu]=CreatePickupA(19197 ,2,-1594.7926,687.5524,17.9000);//Áðëjimas ið PD virðaus, kur yra malûnsparniai
+//èia
+	//Benzinas...
+	pickups[0][degaline]=CreatePickupA(1274 ,2,-2027.3427,155.8481,29.0391);//Centre...
+	CreatePickupA(1274 ,2,-1670.9841,422.1006,7.5935); //Prie armijos...
+	CreatePickupA(1274 ,2,-2409.4023,981.3315,45.2969);//Prie mechaniku...
+	CreatePickupA(1274 ,2,-2412.3286,970.6376,45.2969);//Prie Mechaniku...
+	CreatePickupA(1274 ,2,-1676.0060,407.8112,7.1797);//Prie Senu dyleriu...
+	CreatePickupA(1274 ,2,-91.1094,-1176.0486,2.1900);//Prie Senu dyleriu...
+	CreatePickupA(1274 ,2,-90.9997,-1162.3549,2.2502);//Prie Senu dyleriu...
+	CreatePickupA(1274 ,2,-2056.6306,-22.7164,35.3758);//Prie VM benzinas1
+	CreatePickupA(1274 ,2,-2053.5166,-22.7584,35.3400); // Prie VM benzinas2
+	CreatePickupA(1274 ,2,-2056.7654,-11.9103,35.3794); // Prie VM benzinas3
+	CreatePickupA(1274 ,2,-2053.7837,-11.9073,35.3804); // Prie VM benzinas4
+	pickups[1][degaline]=CreatePickupA(1274 ,2,-1684.6470,408.0358,7.0313); //Prie armijos...
+//==========================================================================================================
+ 	pickups[0][policininkoginklai]=CreatePickupA(1220 ,1,-1607.3136,734.1089,-5.2344); //PD Ginklai, á kaleimà, iðteisinimas
+	pickups[0][kareivioginklai]=CreatePickupA(1220 ,1,-1522.2924,481.3687,7.1875); //ARMIJOS Ginklai, á kaleimà, iðteisinimas
+ 	pickups[0][swatuginklai]=CreatePickupA(1220 ,1,-2067.7085,1421.5016,7.1016); //SWAT Ginklai, á kaleimà, iðteisinimas
+	pickups[0][baudap]=CreatePickupA(1247 ,1,250.4900,118.5359,1003.2188); //baudas
+ 	pickups[0][narkgun]=CreatePickupA(2036 ,2,-2631.7925,629.0540,14.6000); // Dyleriu Ginklai
+ 	pickups[0][ftbginklai]=CreatePickupA(1220 ,1,-2923.0090,449.2289,4.9141); //FTB Ginklai, á kaleimà, iðteisinimas
+
+
+	pickups[0][pasop] = CreatePickupA(1581 ,2,358.5769,166.2921,1008.3828); // paso kurimo pickup`as
+	pickups[0][lytiespakeitimas] = CreatePickupA(1274 ,2,-1978.6271,472.6288,37.0220); // paso kurimo pickup`as
+	//Gaujos
+	pickups[0][cosanostraginklai] = CreatePickupA(2036 ,2,-684.4385,939.7290,13.6328); // Cosa Nostra Ginklai
+	pickups[0][grovestreetginklai] = CreatePickupA(2036 ,2,-2454.2996,2251.5154,4.9844); // Grove Street Ginklai
+
+	pickups[0][kmakma]=CreatePickupA(1274, 2,-1776.5887,815.1551,24.9700);// Mechaikai (kma)
+	// Iejimai ir isejimai
+	pickups[0][valgo]=CreatePickupA(19197 ,23, -1987.0785,206.2955,27.6875); // Iejimas prie stoties uzkandine
+	pickups[0][valgo1]=CreatePickupA(19197 ,23, 377.1989,-192.8895,1000.1401); // Isejimas prie stoties uzkandine
+	pickups[0][valgo2]=CreatePickupA(19197 ,23, -2171.1108,251.9696,34.8360); // Iejimas prie stoties uzkandine
+	pickups[0][valgo3]=CreatePickupA(19197 ,23, 772.111999,-3.898649,1000.228820); // Isejimas prie stoties uzkandine
+	pickups[0][valgo4]=CreatePickupA(19197 ,23, -1605.6542,711.1298,13.3672); // Iejimas prie stoties uzkandine
+	pickups[0][valgo5]=CreatePickupA(19197 ,23, 246.375991,109.245994,1002.718750); // Isejimas prie stoties uzkandine
+	pickups[0][valgo6]=CreatePickupA(19197 ,23, -2039.6469,455.1567,35.2436); // Vyriausybës áëjimas
+	pickups[0][valgo7]=CreatePickupA(19197 ,23, 390.0402,173.8475,1007.8828); // Isejimas prie stoties uzkandine
+
+	pickups[0][valgo12]=CreatePickupA(19197 ,23, -2672.2710,258.7605,4.1328);//ledu...
+	pickups[0][valgo13]=CreatePickupA(19197 ,23, 363.1517,-74.9159,1001.0078);//ledu...
+	pickups[0][valgo14]=CreatePickupA(19197 ,23, -2765.8943,375.5299,5.8347);//ledu...
+	pickups[0][valgo15]=CreatePickupA(19197 ,23, 2324.3945,-1149.0513,1050.2101);//ledu...
+	pickups[0][valgo16]=CreatePickupA(19197 ,23, -2270.1760,-155.9171,34.8203);//ledu...
+	pickups[0][valgo17]=CreatePickupA(19197 ,23, 774.213989,-48.924296,6000.585937);//ledu...
+	pickups[0][valgo20]=CreatePickupA(19197 ,23, -2442.7524,755.0043,34.6719);//ledu...
+	pickups[0][valgo21]=CreatePickupA(19197 ,23, -25.8013,-139.6287,1003.0469);//ledu.
+	pickups[0][valgo22]=CreatePickupA(19197 ,23, -1882.8461,865.8436,34.6719);//ledu...
+	pickups[0][valgo23]=CreatePickupA(19197 ,23, 204.3770,-166.0885,1000.0234);//ledu.
+	pickups[0][valgo24]=CreatePickupA(19197 ,23, -2626.1721,208.6157,4.1079);//ledu...
+	pickups[0][valgo25]=CreatePickupA(19197 ,23, 285.6864,-86.2752,1001.0229);//ledu.
+	pickups[0][valgo26]=CreatePickupA(19197 ,23, -2551.5024,193.6397,5.8000);//ledu...
+	pickups[0][valgo27]=CreatePickupA(19197 ,23, 493.390991,-22.722799,1000.179687);//ledu.
+	pickups[0][valgo28]=CreatePickupA(19197 ,23, -1754.1807,963.4941,24.3828);//ledu...
+	pickups[0][valgo29]=CreatePickupA(19197 ,23, 1204.8611,-13.5198,1000.4219);//ledu.
+	pickups[0][skins]=CreatePickupA(1274 ,23, 204.5816,-159.3906,1000.5234);//Drabuþiai...
+	pickups[0][autoalga]=CreatePickupA(1210 ,2,362.3399,173.7508,1008.3828); //ALGOS
+
+   	pickups[0][boksas]=CreatePickupA(1239 ,2,756.25,5.34,1000.70); //bokso rubai
+   	pickups[1][boksas]=CreatePickupA(1239 ,2,756.24,7.43,1005.70); //bokso rubai
+   	pickups[0][ginklushopas]=CreatePickupA(1274 ,2,295.7896,-80.5737,1001.5156); //Keisit kordinates
+	pickups[0][lvfur]=CreatePickupA(19132 ,2,-1732.9025,39.2854,3.5547); //UAB Exportas
+ 	pickups[0][zinios]=CreatePickupA(1239 ,2,2375.06,-1127.70,1050.88); //bokso rubai
+ 	pickups[0][KF]=CreatePickupA(1274 ,2,2492.6465,-1700.2797,1018.3438);// SEKLOS
+
+
+	pickups[0][backine]=CreatePickupA(1274 ,2,379.6878,2603.9060,16.4844); //pas furistus
+	pickups[0][pridavimas]=CreatePickupA(1210 ,2,2478.93,-2078.63,13.55); //pas furistus
+	CreatePickupA(1210 ,2,-2038.3445,178.6678,28.8879); //
+	CreatePickupA(1210 ,2,-1677.3912,401.1737,7.0313); //
+	CreatePickupA(1210 ,2,1609.4260,2240.9463,10.8203); //
+	CreatePickupA(1210 ,2,2188.0750,2464.7031,11.2422); //
+	CreatePickupA(1210 ,2,-72.2638,-1163.2455,1.8936); //
+	CreatePickupA(1210 ,2,638.3459,1683.8516,6.9922); //
+	pickups[1][pridavimas]=CreatePickupA(1210 ,2,-1739.3656,177.4001,3.5547);
+	pickups[0][telikai]=CreatePickupA(1221 ,2,-18.8600,-270.5700,5.4300); //pasikrauti teliku
+	pickups[0][telikatv]=CreatePickupA(1230 ,2,2876.0300,920.5000,10.7500); //priduoti
+	CreatePickupA(1230 ,2,1682.4900,2326.8700,10.8200); //priduoti
+	pickups[1][telikatv]=CreatePickupA(1230 ,2,1438.2200,975.6000,10.8100); //priduoti
+	pickups[0][pautai]=CreatePickupA(1299 ,2,-1866.5500,-1715.6100,22.7000); //pasikrauti kiausiniu
+	pickups[0][pautatv]=CreatePickupA(1210 ,2,-2457.4172,790.4736,35.1719); //priduoti kiausinius
+	pickups[1][pautatv]=CreatePickupA(1210 ,2,-2540.2522,-52.6456,16.5594); //priduoti kiausinius
+
+//==============================================================================
+
+	pickups[0][bizniss]=CreateBussiness(125 ,250000,"Traukiniø Stotis!", -1980.8439,144.7642,27.6875); // Traukiniø Stoties
+	CreateBussiness(143 ,280000,"Vieðbutis", -2772.5320,195.8561,7.0100); // Vieðbutis
+	CreateBussiness(600 ,2500000,"Bankas", -2764.3640,368.8621,6.3359); // Bankas
+	CreateBussiness(250 ,360000,"LukoiL!", -2034.8842,148.6620,28.8999); // Degalinë Lukoil
+	CreateBussiness(450 ,750000,"Ligoninë!", -1978.0852,476.3754,37.0303); // Ligonine
+	CreateBussiness(320 ,500000,"StatoiL!", -1675.4683,431.5771,7.1797); // Degalinë StatoiL
+	CreateBussiness(200 ,290000,"Hoomer!", -2419.2837,969.8782,45.2969); // Degalinë Hoomer
+	CreateBussiness(99 ,250000,"Binco!",-2375.4363,910.1257,45.4453); // Drabuþiø parduotuvë
+	CreateBussiness(200 ,3500000,"Maðinø turgus!", -2234.6753,529.4866,35.1719); // Maðinø turgus
+	CreateBussiness(247 ,350000,"Papercuts!", -2106.9612,341.1252,35.1994); // Papercuts
+	CreateBussiness(356 ,950000,"Wang Cars!", -1955.9238,295.2824,35.4688); // Wang Cars
+	CreateBussiness(50 ,100000,"Dom's!", -2176.0017,-129.6866,35.2831); // Dom's
+	CreateBussiness(117 ,250000,"COBRA!", -2268.4067,-153.3232,35.3203); // COBRA
+	CreateBussiness(290 ,400000,"Burger SHOT!", -2329.0010,-166.2460,35.5547); // Burger SHOT
+	CreateBussiness(99 ,500000,"Hippy Hopper!", -2508.5562,-49.6905,25.6852); // Hippy Hopper
+	CreateBussiness(99 ,780000,"Misty's!", -2243.4309,-88.1704,35.3203); // Misty's
+	CreateBussiness(99 ,160000,"Chack's!", -2242.1436,78.9884,35.3203); // Chack's
+	CreateBussiness(70 ,100000,"STW : Books!", -2242.1055,99.9089,35.3203); // STW : Books
+	CreateBussiness(149 ,130000,"Zero RC!", -2243.4495,131.2958,35.3203); // Zero RC
+	CreateBussiness(550 ,1000000,"Vieðbutys!", -2413.4551,342.9373,35.1719); // Vieðbutys
+	CreateBussiness(460 ,1000000,"Hotel!", -2459.1406,132.2433,35.1719); // Hotel
+	CreateBussiness(139 ,290000,"Piece of Peace!", -2433.9558,31.2154,34.9801); // Piece of Peace
+	pickups[1][bizniss]=CreateBussiness(370 ,460000,"Vairavimo Mokykla", -2020.6965,-101.3594,35.2000); // Vairavimo Mokykla
+
+	pickups[0][narkotikai]=CreatePickupA(1241, 1,-2620.2847,621.6239,14.6000); // deze1
+	pickups[1][narkotikai]=CreatePickupA(1241, 1,-2615.5176,621.6588,14.6000); // drug deze3
+
+	pickups[0][zolyte]=CreatePickupA(1254, 1,-2652.8389,630.1563,14.6000); // deze1
+	pickups[0][seklide]=CreatePickupA(1576, 1,-2633.9771,622.3888,14.6000); // deze1
+
+	pickups[0][maitinimas]=CreatePickupA(1274 ,2,380.8377,-190.8018,1000.6328);
+	//kamera
+	pickups[0][kamera]=CreatePickupA(1239 ,2,218.0870,111.3306,1003.2188); //kamera
+	pickups[0][kamera2]=CreatePickupA(1239 ,2,215.4126,111.3295,1003.2188); //kamera2
+
+	//Bankomatai
+	pickups[0][atm] = CreatePickupA(1274 ,2,-1382.2734,-356.7302,14.1484); // atm
+ 	CreatePickupA(1274 ,2,-2096.7839,-807.9987,32.1719); // atm
+ 	CreatePickupA(1274 ,2,-2016.5652,-35.9704,35.2824); // atm
+ 	CreatePickupA(1274 ,2,-1967.8477,252.7488,35.1719); // atm
+ 	CreatePickupA(1274 ,2,-2230.6162,286.7033,35.3203); // atm
+ 	CreatePickupA(1274 ,2,-2389.1064,390.8219,35.1472); // atm
+ 	CreatePickupA(1274 ,2,-2717.2021,205.8207,4.3359); // atm
+ 	CreatePickupA(1274 ,2,-2444.3494,2251.6316,4.9551); // atm
+ 	CreatePickupA(1274 ,2,-1981.2925,131.4493,27.6875); // centre
+ 	CreatePickupA(1274 ,2,-677.0661,944.0987,12.1328); // 1 gaujos
+ 	pickups[1][atm] = CreatePickupA(1274 ,2,-2438.4973,751.9193,35.1719); // atm
+	pickups[0][loterija]=CreatePickupA(1274 ,2,822.2601,2.1007,1004.1797);
+	pickups[0][valgis]=CreatePickupA(1274 ,2,376.4373,-6.8294,1001.8516);
+	pickups[0][kontra1]=CreatePickupA(1274 ,14,2311.6384,2770.4128,10.6953);
+	pickups[0][kontra]=CreatePickupA(1274 ,4,2311.4463,2779.9272,10.6953);
+        	pickups[0][gerimai]=CreatePickupA(1512 ,2,491.57,-80.29,998.76);
+        	CreatePickupA(1512 ,2,500.5380,-15.5742,1000.6719);
+        	CreatePickupA(1512 ,2,-672.5081,945.4819,12.1328); // 1 gauja
+        	CreatePickupA(1512 ,2,1215.7806,-13.1774,1000.9219);//striptize
+        	pickups[1][gerimai]=CreatePickupA(1512 ,2,-2656.73,1416.06,906.27);
+	pickups[0][parasutas]=CreatePickupA(371 ,2,2.9831,23.0633,1199.5938); //Parasiutas lektuve
+	pickups[0][fotikas]=CreatePickupA(367 ,2,-1775.3945,750.5189,24.8906);
+}

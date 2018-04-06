@@ -1,0 +1,1185 @@
+forward SyncVehicles();
+forward SetVehicleParamsForAll(carid,objective,doorslocked);
+forward CreateTunedCar(playerid);
+forward DelayDestroyCar(playerid);
+forward DelaySetVehicleParams(playerid);
+forward ResetAutohausSpawns();
+
+enum ahCar
+{
+    Lock,
+	Typ,
+	Float:X,
+	Float:Y,
+	Float:Z,
+	Float:Rotation,
+	Status,
+	Carid,
+	Paintjob,
+	Color1,
+	Color2,
+	mod1,
+	mod2,
+	mod3,
+	mod4,
+	mod5,
+	mod6,
+	mod7,
+	mod8,
+	mod9,
+	mod10,
+	mod11,
+	mod12,
+	mod13,
+	mod14,
+	mod15,
+	mod16,
+	mod17,
+	mod18,
+    gas,
+	numeris,
+	Float:rida
+	
+};
+new Carlist[MAX_PLAYERS][ahCar];
+
+enum ahSpawn
+{
+	Float:X,
+	Float:Y,
+	Float:Z,
+	Float:Rotation,
+};
+new Carspawns[7][ahSpawn] =
+{
+	{-1983.4434,265.7217,34.8320,88.3108},
+	{-1983.5557,261.9148,34.8320,88.3108},
+	{-1983.6802,257.6935,34.8320,88.3108},
+	{-1983.8090,253.3260,34.8320,88.3108},
+	{-1983.9248,249.3923,34.8320,88.3108},
+	{-1984.0457,245.2924,34.8320,88.3108},
+	{-1984.1803,240.7306,34.8320,88.3108}
+
+};
+enum ahModel
+{
+	Name[128],
+	Autohaus,
+	Modelid,
+	Carid,
+	Price,
+	Repair,
+	Float:X,
+	Float:Y,
+	Float:Z,
+	Float:Rotation,
+};
+new Buylist[][ahModel] = {
+
+	// Maðinø Turgus
+	{"'69 Jaguar E-Type",2,555,-1,30000,8000,-2263.80859375,529.52148438,38.58295822,270.00000000},//windsor
+	{"'90 Subaru Impreza",1,560,-1,140000,30000,-2263.84375000,543.88653564,38.55508804,270.00000000},//sultan
+	{"'90 Eagle Talon",2,558,-1,25000,7000,-2263.82812500,534.04394531,38.44009399,270.00000000},//uranus
+	{"'80 Pontiac Safari",3,479,-1,10000,2200,-2249.68676758,529.84918213,38.63744354,90.00000000},//regina
+	{"'92 Honda Civic",7,565,-1,50000,10000,-2240.05029297,537.25384521,34.65066528,90.00000000},// flash
+	{"'80 Pontiac Firebird",0,603,-1,20000,5000,-2240.05395508,541.60778809,35.04802322,90.00000000},//phoenix
+	{"'85 Toyota Corolla AE86",3,496,-1,60000,15000,-2240.05737305,545.72265625,34.71374130,90.00000000},//blista
+	{"'89 Vauxhall Cavalier",6,527,-1,12000,1200,-2249.44995117,549.93316650,34.71769714,180.00000000},//cadrona
+	{"'75 Oldsmobile Cutclass",4,439,-1,15000,4500,-2253.64941406,550.21368408,35.05969620,180.00000000},//stallion
+	{"'76 Mrcedes-BenzW123",5,445,-1,15000,4500,-2263.75830078,538.72161865,34.94575119,270.00000000},//oky admiral
+	{"'80 Buick Lesabre",2,546,-1,16000,2600,-2258.84692383,530.35693359,34.79701233,0.00000000},//naujos intruder
+	{"'94 Infiniti Q45",2,585,-1,20000,3700,-2254.95532227,530.49908447,34.72381592,0.00000000},//naujos emperor
+	{"'87 Ford Taurus Universalas",4,458,-1,18000,4700,-2250.74731445,530.41876221,35.23631287,0.00000000},//oky solair
+	{"'92 Nissan Skyline R32",2,562,-1,130000,25000,-2249.39526367,543.68292236,38.52313232,180.00000000},//oky elegy
+	{"'65 Chevy Impala",3,536,-1,40000,10000,-2263.84863281,538.95312500,38.78573990,270.00000000},//oky blade
+	{"'97 Honda Accord Universalas",5,561,-1,20000,8000,-2240.04687500,533.26947021,34.71962357,90.00000000},//oky stratum
+	{"'60 Chevy Corvair",6,549,-1,5000,500,-2245.54492188,549.73852539,34.93883514,180.00000000},//oky tampa
+	{"'83 Range Rover",6,579,-1,25000,5000,-2263.01757812,551.13116455,34.82843018,270.00000000},//oky huntley
+	{"'93 Ford Thunderbird",0,526,-1,10000,2000,-2263.36376953,547.13519287,35.03757477,270.00000000},//oky fortune
+	{"'90 Nissan 300ZX",3,587,-1,37000,10000,-2263.49877930,542.92419434,34.73505783,270.00000000},//oky euros
+	{"'65 Chevy Nova Universalas",2,404,-1,15000,1500,-2263.99902344,534.86090088,34.95093155,270.00000000},//naujos perenial
+	
+	
+	// Wank Cars
+	{"'04 Ford GT",6,541,-1,450000,100000,-1945.29089355,264.98724365,35.14850235,132.00000000},//oky bullet
+	{"'92 Honda NSX",2,411,-1,550000,150000,-1946.28906250,273.01855469,35.30766678,132.00000000},//oky infernus
+	{"'91 Ferrari F40",2,451,-1,400000,75000,-1945.29687500,269.06381226,35.23830032,131.99523926},//oky turismo
+	{"'90 Lotus Esprit",1,506,-1,350000,18000,-1945.09667969,261.06472778,35.27610016,131.99523926},//oky super gt
+	{"'93 Dodge Viper GTS",5,429,-1,280000,7500,-1960.53332520,256.77310181,35.14887238,300.00000000},//oky banshee
+	{"'89 Pontiac Boneville",2,550,-1,222000,10000,-1961.49536133,261.61520386,35.40782928,299.99816895},//oky sunrise
+	{"'93 Mazda RX-7",2,477,-1,250000,20000,-1961.40478516,269.51455688,35.30866241,299.99816895},//naujos zr-350
+	{"'70 Porsche 911",2,480,-1,195000,14321,-1961.29333496,274.56552124,35.26309967,299.99816895},//naujos comet
+	
+	{"'88 Kawasaki Ninja",6,522,-1,150000,25000,-1945.01379395,272.86883545,40.70745850,89.99816895},//oky NRG
+	{"'61 Harley Davidson",4,586,-1,15000,8000,-1945.05041504,269.44921875,40.75329208,89.99450684},//oky freeway
+	{"'00 Honda CR125",1,468,-1,27000,4000,-1945.09716797,266.10446167,40.89113617,89.99450684},//oky sanchez
+	///////////////////////////////////////////////////
+	{"'84 Chevrolet Camaro",7,402,-1,110000,20000,-2249.5396,534.5878,38.5307,91.2189}//oky buffalo
+
+};
+
+new Spectating[MAX_PLAYERS][1];
+
+// begin of tuning component list
+new spoiler[20][0] = {
+	{1000},
+	{1001},
+	{1002},
+	{1003},
+	{1014},
+	{1015},
+	{1016},
+	{1023},
+	{1058},
+	{1060},
+	{1049},
+	{1050},
+	{1138},
+	{1139},
+	{1146},
+	{1147},
+	{1158},
+	{1162},
+	{1163},
+	{1164}
+};
+
+new nitro[3][0] = {
+    {1008},
+    {1009},
+    {1010}
+};
+
+new fbumper[23][0] = {
+    {1117},
+    {1152},
+    {1153},
+    {1155},
+    {1157},
+    {1160},
+    {1165},
+    {1167},
+    {1169},
+    {1170},
+    {1171},
+    {1172},
+    {1173},
+    {1174},
+    {1175},
+    {1179},
+    {1181},
+    {1182},
+    {1185},
+    {1188},
+    {1189},
+    {1192},
+    {1193}
+};
+
+new rbumper[22][0] = {
+    {1140},
+    {1141},
+    {1148},
+    {1149},
+    {1150},
+    {1151},
+    {1154},
+    {1156},
+    {1159},
+    {1161},
+    {1166},
+    {1168},
+    {1176},
+    {1177},
+    {1178},
+    {1180},
+    {1183},
+    {1184},
+    {1186},
+    {1187},
+    {1190},
+    {1191}
+};
+
+new exhaust[28][0] = {
+    {1018},
+    {1019},
+    {1020},
+    {1021},
+    {1022},
+    {1028},
+    {1029},
+    {1037},
+    {1043},
+    {1044},
+    {1045},
+    {1046},
+    {1059},
+    {1064},
+    {1065},
+    {1066},
+    {1089},
+    {1092},
+    {1104},
+    {1105},
+    {1113},
+    {1114},
+    {1126},
+    {1127},
+    {1129},
+    {1132},
+    {1135},
+    {1136}
+};
+
+new bventr[2][0] = {
+    {1042},
+    {1044}
+};
+
+new bventl[2][0] = {
+    {1043},
+    {1045}
+};
+
+new bscoop[4][0] = {
+	{1004},
+	{1005},
+	{1011},
+	{1012}
+};
+
+new rscoop[13][0] = {
+    {1006},
+    {1032},
+    {1033},
+    {1035},
+    {1038},
+    {1053},
+    {1054},
+    {1055},
+    {1061},
+    {1067},
+    {1068},
+    {1088},
+    {1091}
+};
+
+new lskirt[21][0] = {
+    {1007},
+    {1026},
+    {1031},
+    {1036},
+    {1039},
+    {1042},
+    {1047},
+    {1048},
+    {1056},
+    {1057},
+    {1069},
+    {1070},
+    {1090},
+    {1093},
+    {1106},
+    {1108},
+    {1118},
+    {1119},
+    {1133},
+    {1122},
+    {1134}
+};
+
+new rskirt[21][0] = {
+    {1017},
+    {1027},
+    {1030},
+    {1040},
+    {1041},
+    {1051},
+    {1052},
+    {1062},
+    {1063},
+    {1071},
+    {1072},
+    {1094},
+    {1095},
+    {1099},
+    {1101},
+    {1102},
+    {1107},
+    {1120},
+    {1121},
+    {1124},
+    {1137}
+};
+
+new hydraulics[1][0] = {
+    {1087}
+};
+
+new base[1][0] = {
+    {1086}
+};
+
+new rbbars[2][0] = {
+    {1109},
+    {1110}
+};
+
+new fbbars[2][0] = {
+    {1115},
+    {1116}
+};
+
+new wheels[17][0] = {
+    {1025},
+    {1073},
+    {1074},
+    {1075},
+    {1076},
+    {1077},
+    {1078},
+    {1079},
+    {1080},
+    {1081},
+    {1082},
+    {1083},
+    {1084},
+    {1085},
+    {1096},
+    {1097},
+    {1098}
+};
+
+new lights[2][0] = {
+	{1013},
+	{1024}
+};
+
+new roofs[3][0] = {
+ 	{1103},
+  	{1130},
+  	{1131}
+};
+
+// end of tuning component list---------------------------------------------------------------------------------------------------------
+
+#if defined CARSELL
+new offerCar[MAX_PLAYERS][2];
+#endif
+
+ini_GetKey( line[] )
+{
+	new keyRes[256];
+	keyRes[0] = 0;
+    if ( strfind( line , "=" , true ) == -1 ) return keyRes;
+    strmid( keyRes , line , 0 , strfind( line , "=" , true ) , sizeof( keyRes) );
+    return keyRes;
+}
+
+ini_GetValue( line[] )
+{
+	new valRes[256];
+	valRes[0]=0;
+	if ( strfind( line , "=" , true ) == -1 ) return valRes;
+	strmid( valRes , line , strfind( line , "=" , true )+1 , strlen( line ) , sizeof( valRes ) );
+	return valRes;
+}
+
+IsAutohausCar(carid)
+{
+	new g;
+	for(g=0; g<sizeof(Buylist); g++)
+	{
+	    if(Buylist[g][Carid]==carid) { return g; }
+	}
+	return -1;
+}
+
+GetPlayerFromCarlistCar(carid)
+{
+	new g;
+	for(g=0; g<sizeof(Carlist); g++)
+	{
+	    if(Carlist[g][Carid]==carid) { return g; }
+	}
+	return -1;
+}
+
+GetModType(componentid)
+{
+	new g;
+	for(g=0; g<20; g++)
+	{
+	    if(spoiler[g][0]==componentid) { return 1; }
+	}
+	for(g=0; g<3; g++)
+	{
+	    if(nitro[g][0]==componentid) { return 2; }
+	}
+	for(g=0; g<23; g++)
+	{
+	    if(fbumper[g][0]==componentid) { return 3; }
+	}
+	for(g=0; g<22; g++)
+	{
+	    if(rbumper[g][0]==componentid) { return 4; }
+	}
+	for(g=0; g<28; g++)
+	{
+	    if(exhaust[g][0]==componentid) { return 5; }
+	}
+	for(g=0; g<2; g++)
+	{
+	    if(bventr[g][0]==componentid) { return 6; }
+	}
+	for(g=0; g<2; g++)
+	{
+	    if(bventl[g][0]==componentid) { return 7; }
+	}
+	for(g=0; g<4; g++)
+	{
+	    if(bscoop[g][0]==componentid) { return 8; }
+	}
+	for(g=0; g<13; g++)
+	{
+	    if(rscoop[g][0]==componentid) { return 9; }
+	}
+	for(g=0; g<21; g++)
+	{
+	    if(lskirt[g][0]==componentid) { return 10; }
+	}
+	for(g=0; g<21; g++)
+	{
+	    if(rskirt[g][0]==componentid) { return 11; }
+	}
+	if(hydraulics[0][0]==componentid) { return 12; }
+	if(base[0][0]==componentid) { return 13; }
+	for(g=0; g<2; g++)
+	{
+	    if(rbbars[g][0]==componentid) { return 14; }
+	}
+	for(g=0; g<2; g++)
+	{
+	    if(fbbars[g][0]==componentid) { return 15; }
+	}
+	for(g=0; g<17; g++)
+	{
+	    if(wheels[g][0]==componentid) { return 16; }
+	}
+	for(g=0; g<2; g++)
+	{
+	    if(lights[g][0]==componentid) { return 17; }
+	}
+	for(g=0; g<3; g++)
+	{
+	    if(roofs[g][0]==componentid) { return 18; }
+	}
+	return 0;
+}
+//--------------------------------------------------------//--------------------------------------------------------//--------------------------------------------------------
+enum vitem
+{
+	gas,
+	AutoPilot,
+	bool:locked,
+	bool:parduodama,
+	bool:registruota,
+	VehicleEngine,
+	benzinas,
+	dyzelis,
+	dujos,
+	lastuser,
+	padpakelis,
+	Float:lastpos[4],
+	Float:respawnpos[4],
+	Float:respawnrot,
+	owner_name[MAX_PLAYER_NAME],
+	col1,
+	col2,
+	paintjob,
+	Float:rida
+}
+
+new vehicleDB[MAX_VEHICLES][vitem];
+new maxvehicles=-1; //Kiek yra masinu... paprasta :)
+
+new aVehicleNames[212][] = {    // Vehicle Names - Betamaster
+        {"Landstalker"},
+        {"Bravura"},
+        {"Buffalo"},
+        {"Linerunner"},
+        {"Perrenial"},
+        {"Sentinel"},
+        {"Dumper"},
+        {"Firetruck"},
+        {"Trashmaster"},
+        {"Stretch"},
+        {"Manana"},
+        {"Infernus"},
+        {"Voodoo"},
+        {"Pony"},
+        {"Mule"},
+        {"Cheetah"},
+        {"Ambulance"},
+        {"Leviathan"},
+        {"Moonbeam"},
+        {"Esperanto"},
+        {"Taxi"},
+        {"Washington"},
+        {"Bobcat"},
+        {"Mr Whoopee"},
+        {"BF Injection"},
+        {"Hunter"},
+        {"Premier"},
+        {"Enforcer"},
+        {"Securicar"},
+        {"Banshee"},
+        {"Predator"},
+        {"Bus"},
+        {"Rhino"},
+        {"Barracks"},
+        {"Hotknife"},
+        {"Trailer 1"}, //artict1
+        {"Previon"},
+        {"Coach"},
+        {"Cabbie"},
+        {"Stallion"},
+        {"Rumpo"},
+        {"RC Bandit"},
+        {"Romero"},
+        {"Packer"},
+        {"Monster"},
+        {"Admiral"},
+        {"Squalo"},
+        {"Seasparrow"},
+        {"Pizzaboy"},
+        {"Tram"},
+        {"Trailer 2"}, //artict2
+        {"Turismo"},
+        {"Speeder"},
+        {"Reefer"},
+        {"Tropic"},
+        {"Flatbed"},
+        {"Yankee"},
+        {"Caddy"},
+        {"Solair"},
+        {"Berkley's RC Van"},
+        {"Skimmer"},
+        {"PCJ-600"},
+        {"Faggio"},
+        {"Freeway"},
+        {"RC Baron"},
+        {"RC Raider"},
+        {"Glendale"},
+        {"Oceanic"},
+        {"Sanchez"},
+        {"Sparrow"},
+        {"Patriot"},
+        {"Quad"},
+        {"Coastguard"},
+        {"Dinghy"},
+        {"Hermes"},
+        {"Sabre"},
+        {"Rustler"},
+        {"ZR-350"},
+        {"Walton"},
+        {"Regina"},
+        {"Comet"},
+        {"BMX"},
+        {"Burrito"},
+        {"Camper"},
+        {"Marquis"},
+        {"Baggage"},
+        {"Dozer"},
+        {"Maverick"},
+        {"News Chopper"},
+        {"Rancher"},
+        {"FBI Rancher"},
+        {"Virgo"},
+        {"Greenwood"},
+        {"Jetmax"},
+        {"Hotring"},
+        {"Sandking"},
+        {"Blista Compact"},
+        {"Police Maverick"},
+        {"Boxville"},
+        {"Benson"},
+        {"Mesa"},
+        {"RC Goblin"},
+        {"Hotring Racer A"}, //hotrina
+        {"Hotring Racer B"}, //hotrinb
+        {"Bloodring Banger"},
+        {"Rancher"},
+        {"Super GT"},
+        {"Elegant"},
+        {"Journey"},
+        {"Bike"},
+        {"Mountain Bike"},
+        {"Beagle"},
+        {"Cropdust"},
+        {"Stunt"},
+        {"Tanker"}, //petro
+        {"Roadtrain"},
+        {"Nebula"},
+        {"Majestic"},
+        {"Buccaneer"},
+        {"Shamal"},
+        {"Hydra"},
+        {"FCR-900"},
+        {"NRG-500"},
+        {"HPV1000"},
+        {"Cement Truck"},
+        {"Tow Truck"},
+        {"Fortune"},
+        {"Cadrona"},
+        {"FBI Truck"},
+        {"Willard"},
+        {"Forklift"},
+        {"Tractor"},
+        {"Combine"},
+        {"Feltzer"},
+        {"Remington"},
+        {"Slamvan"},
+        {"Blade"},
+        {"Freight"},
+        {"Streak"},
+        {"Vortex"},
+        {"Vincent"},
+        {"Bullet"},
+        {"Clover"},
+        {"Sadler"},
+        {"Firetruck LA"}, //firela
+        {"Hustler"},
+        {"Intruder"},
+        {"Primo"},
+        {"Cargobob"},
+        {"Tampa"},
+        {"Sunrise"},
+        {"Merit"},
+        {"Utility"},
+        {"Nevada"},
+        {"Yosemite"},
+        {"Windsor"},
+        {"Monster A"}, //monstera
+        {"Monster B"}, //monsterb
+        {"Uranus"},
+        {"Jester"},
+        {"Sultan"},
+        {"Stratum"},
+        {"Elegy"},
+        {"Raindance"},
+        {"RC Tiger"},
+        {"Flash"},
+        {"Tahoma"},
+        {"Savanna"},
+        {"Bandito"},
+        {"Freight Flat"}, //freiflat
+        {"Streak Carriage"}, //streakc
+        {"Kart"},
+        {"Mower"},
+        {"Duneride"},
+        {"Sweeper"},
+        {"Broadway"},
+        {"Tornado"},
+        {"AT-400"},
+        {"DFT-30"},
+        {"Huntley"},
+        {"Stafford"},
+        {"BF-400"},
+        {"Newsvan"},
+        {"Tug"},
+        {"Trailer 3"}, //petrotr
+        {"Emperor"},
+        {"Wayfarer"},
+        {"Euros"},
+        {"Hotdog"},
+        {"Club"},
+        {"Freight Carriage"}, //freibox
+        {"Trailer 3"}, //artict3
+        {"Andromada"},
+        {"Dodo"},
+        {"RC Cam"},
+        {"Launch"},
+        {"Police Car (LSPD)"},
+        {"Police Car (SFPD)"},
+        {"Police Car (LVPD)"},
+        {"Police Ranger"},
+        {"Picador"},
+        {"S.W.A.T. Van"},
+        {"Alpha"},
+        {"Phoenix"},
+        {"Glendale"},
+        {"Sadler"},
+        {"Luggage Trailer A"}, //bagboxa
+        {"Luggage Trailer B"}, //bagboxb
+        {"Stair Trailer"}, //tugstair
+        {"Boxville"},
+        {"Farm Plow"}, //farmtr1
+        {"Utility Trailer"} //utiltr1
+};
+
+new aBakai[212] = { 
+	68,
+        47,
+        70,
+        100,
+        35,
+        58,
+        100,
+        80,
+        90,
+        80,
+        40,
+        60,
+        50,
+        80,
+        80,
+        60,
+        80,
+        120,
+        75,
+        65,
+        67,
+        50,
+        50,
+        70,
+        50,
+        50,
+        50,
+        100,
+        100,
+        80,
+        80,
+        80,
+        280,
+        180,
+        60,
+        100, //artict1
+        45,
+        90,
+        20,
+        62,
+        55,
+        2,
+        60,
+        130,
+        50,
+        52,
+        12,
+        45,
+        5,
+        0,
+        52, //artict2
+        56,
+        35,
+        45,
+        45,
+        85,
+        45,
+        12,
+        45,
+        45,
+        56,
+        20,
+        17,
+        36,
+        2,
+        2,
+        25,
+        25,
+        25,
+        62,
+        80,
+        26,
+        45,
+        45,
+        45,
+        67,
+        90,
+        29,
+        40,
+        40,
+        30,
+        0,
+        75,
+        69,
+        25,
+        4,
+        130,
+        130,
+        110,
+        58,
+        58,
+        68,
+        62,
+        65,
+        25,
+        25,
+        45,
+        130,
+        120,
+        50,
+        65,
+        1,
+        20, //hotrina
+        25, //hotrinb
+        18,
+        62,
+        45,
+        62,
+        82,
+        0,
+        0,
+        110,
+        40,
+        37,
+        100, //petro
+        140,
+        80,
+        60,
+        58,
+        120,
+        150,
+        60,
+        37,
+        32,
+        40,
+        35,
+        40,
+        40,
+        80,
+        80,
+        5,
+        20,
+        80,
+        45,
+        56,
+        65,
+        65,
+        82,
+        82,
+        15,
+        56,
+        68,
+        68,
+        68,
+        88, //firela
+        60,
+        40,
+        60,
+        82,
+        86,
+        56,
+        65,
+        68,
+        150,
+        68,
+        54,
+        120, //monstera
+        120, //monsterb
+        54,
+        45,
+        75,
+        60,
+        52,
+        52,
+        2,
+        62,
+        62,
+        45,
+        20,
+        0, //freiflat
+        0, //streakc
+        10,
+        5,
+        30,
+        15,
+        72,
+        68,
+        500,
+        82,
+        46,
+        55,
+        30,
+        68,
+        20,
+        10040, //petrotr
+        56,
+        31,
+        64,
+        79,
+        30,
+        0, //freibox
+        90, //artict3
+        182,
+        45,
+        0,
+        65,
+        82,
+        45,
+        82,
+        92,
+        45,
+        91,
+        51,
+        83,
+        42,
+        62,
+        0, //bagboxa
+        0, //bagboxb
+        0, //tugstair
+        85,
+        0, //farmtr1
+        0 //utiltr1
+};
+
+new aEda[212] = {  
+        3,
+        3,
+        4,
+        5,
+        2,
+        3,
+        7,
+        7,
+        7,
+        5,
+        2,
+        3,
+        3,
+        2,
+        2,
+        3,
+        3,
+        6,
+        2,
+        3,
+        1,
+        1,
+        3,
+        3,
+        2,
+        6,
+        1,
+        6,
+        7,
+        3,
+        3,
+        7,
+        7,
+        7,
+        2,
+        0, //artict1
+        2,
+        5,
+        3,
+        3,
+        3,
+        0,
+        3,
+        7,
+        7,
+        2,
+        3,
+        6,
+        1,
+        0,
+        0, //artict2
+        4,
+        5,
+        5,
+        5,
+        9,
+        9,
+        1,
+        2,
+        3,
+        7,
+        2,
+        1,
+        2,
+        1,
+        1,
+        3,
+        3,
+        1,
+        7,
+        7,
+        1,
+        3,
+        3,
+        3,
+        2,
+        5,
+        3,
+        3,
+        2,
+        3,
+        0,
+        3,
+        3,
+        3,
+        1,
+        7,
+        7,
+        7,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        5,
+        1,
+        7,
+        3,
+        3,
+        3,
+        1,
+        1, //hotrina
+        1, //hotrinb
+        3,
+        3,
+        3,
+        2,
+        3,
+        0,
+        0,
+        6,
+        7,
+        6,
+        6, //petro
+        6,
+        2,
+        3,
+        3,
+        6,
+        6,
+        2,
+        1,
+        1,
+        8,
+        2,
+        2,
+        2,
+        3,
+        2,
+        1,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0,
+        0,
+        1,
+        2,
+        3,
+        3,
+        3,
+        8, //firela
+        3,
+        2,
+        2,
+        7,
+        3,
+        2,
+        2,
+        3,
+        8,
+        3,
+        2,
+        7, //monstera
+        7, //monsterb
+        3,
+        3,
+        3,
+        3,
+        3,
+        8,
+        1,
+        3,
+        2,
+        3,
+        3,
+        0, //freiflat
+        0, //streakc
+        1,
+        1,
+        5,
+        1,
+        3,
+        3,
+        8,
+        5,
+        3,
+        2,
+        1,
+        3,
+        1,
+        0, //petrotr
+        2,
+        1,
+        3,
+        2,
+        2,
+        0, //freibox
+        0, //artict3
+        3,
+        8,
+        1,
+        8,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        0, //bagboxa
+        0, //bagboxb
+        0, //tugstair
+        3,
+        0, //farmtr1
+        0 //utiltr1
+};
+
+stock Vehicle(model,Float:x,Float:y,Float:z,Float:a,color,color2)
+{
+	AddStaticVehicleEx(model,x,y,z,a,color,color2,172800);
+	maxvehicles++;
+
+	vehicleDB[maxvehicles][gas]=random(aEda[model-400]);
+	if(IsTurgus(x,y)) vehicleDB[maxvehicles][parduodama]=false; else vehicleDB[maxvehicles][parduodama]=true;
+
+	return maxvehicles;
+}
+
+public SyncVehicles()
+{
+	new bool:DontSync[MAX_VEHICLES];
+	for(new playerid=0;playerid<MAX_PLAYERS;playerid++)
+	{
+		if(IsPlayerConnected(playerid))
+		{
+			if(IsPlayerInAnyVehicle(playerid))
+			{
+				DontSync[GetPlayerVehicleID(playerid)]=true;
+			}
+		}
+	}
+	
+	for(new vehicleid=0;vehicleid<maxvehicles;vehicleid++)
+	{
+		if(!DontSync[vehicleid] && !vehicleDB[vehicleid][locked])
+		{
+			SetVehicleHealth(vehicleid,1000);
+		}
+	}
+	
+}

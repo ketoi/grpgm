@@ -1,0 +1,65 @@
+#define s_%1; new tstr[128]; tstr=%1; return tstr;
+#define TEXTCOL_SILVER 	0xD2D2D230          //***** Spalvos *****
+#define TEXTCOL_GREY 	0x80808030          //***** Spalvos *****
+#define TEXTCOL_BLACK 	0x00000030          //***** Spalvos *****
+#define TEXTCOL_GREEN 	0x98B13430          //***** Spalvos *****
+#define TEXTCOL_RED 	0xFF000030          //***** Spalvos *****
+#define TEXTCOL_DARKRED 0xA6000030          //***** Spalvos *****
+#define TEXTCOL_BLUE 	0x6FA7FB30          //***** Spalvos *****
+#define TEXTCOL_GOLD 	0xE3B92430          //***** Spalvos *****
+#define TEXTCOL_BROWN 	0xC1762B30          //***** Spalvos *****
+#define TEXTCOL_PINK 	0xFF80FF30          //***** Spalvos *****
+#define TEXTCOL_VIOLET 	0xAD5BFF30          //***** Spalvos *****
+forward SMSsystem(playerid,text[]);
+public SMSsystem(playerid,text[])
+{
+	new name[MAX_PLAYER_NAME];
+	GetPlayerName(playerid,name,sizeof(name));
+	SendSMS(playerid,"TELE2",name,ReferSMS(playerid,text));
+}
+
+stock ReferSMS(playerid,text[])
+{
+	if(!strcmp(text,"pildyti",true,7))
+	{
+		if(text[7]==0){ s_"SMS gautas. Taciau forma netinkama: pildyti [kiek litu]."; }
+		if(!IsNumeric(text[8])){ s_"SMS gautas. Taciau pinigu suma nurodyta neteisingai."; }
+
+		new suma = StringToInt(text[8]);
+		if(suma > playerDB[playerid][banke]){ s_"SMS gautas. Jusu banko saskaitoje nera pakankamai pinigu."; }
+
+		playerDB[playerid][mobsas]+=suma;
+		playerDB[playerid][banke]-=suma;
+		s_"SMS gautas. Jusu Tele2 saskaita papildyta.";
+	}
+	if(!strcmp(text,"balansas",true))
+	{
+		new msg[128];
+		format(msg,sizeof(msg),"Jusu Tele2 saskaitoje yra %i LT.",playerDB[playerid][mobsas]);
+		return msg;
+	}
+
+	if(!strcmp(text,"info",true))
+	{
+		s_"NecroTel komandos: balansas,pildyti. Siuskite sms Tele2 su siomis komandomis.";
+	}
+
+	s_"SMS gautas. Taciau komanda nesuprasta.";
+}
+
+stock SendSMS(recieverid,name[],recievername[],text[],playerid=INVALID_PLAYER_ID)
+{
+	new tex[128];
+	format(tex,sizeof(tex),"SMS: [%s >> %s ]:",name,recievername);
+
+	if(recieverid != INVALID_PLAYER_ID)
+	{
+		SendClientMessage(recieverid,TEXTCOL_GREEN,tex);
+		SendClientMessage(recieverid,TEXTCOL_RED,text);
+	}
+	if(playerid!=INVALID_PLAYER_ID)
+	{
+		SendClientMessage(playerid,TEXTCOL_GREEN,tex);
+		SendClientMessage(playerid,TEXTCOL_RED,text);
+	}
+}

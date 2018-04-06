@@ -1,0 +1,142 @@
+           
+enum hitem
+{
+	setting,
+	nkaina,
+	owner_name[MAX_PLAYER_NAME],
+	Text3D:housetext,
+	krumeliai,
+	bukle,
+	dregme,
+	amzius,
+	namehash
+}
+new houseDB[256][hitem];
+
+enum settings
+{
+	interior,
+	Float:enter_pos[3]
+}
+new houseSETTINGS[15][settings];
+
+stock PrepareHouseSystem()
+{
+	houseSETTINGS[0][interior]=5;
+	houseSETTINGS[1][interior]=9;
+	houseSETTINGS[2][interior]=3;
+	houseSETTINGS[3][interior]=1;
+	houseSETTINGS[4][interior]=15;
+	houseSETTINGS[5][interior]=10;
+	houseSETTINGS[6][interior]=7;
+	houseSETTINGS[7][interior]=15;
+	houseSETTINGS[8][interior]=5;
+	houseSETTINGS[9][interior]=9;
+	houseSETTINGS[10][interior]=2;
+	houseSETTINGS[11][interior]=4;
+	houseSETTINGS[12][interior]=6;
+	houseSETTINGS[13][interior]=2;
+	houseSETTINGS[14][interior]=9;
+
+	houseSETTINGS[0][enter_pos][0]=2231.8777;
+	houseSETTINGS[0][enter_pos][1]=-1106.2567;
+	houseSETTINGS[0][enter_pos][2]=1050.8828;
+
+	houseSETTINGS[1][enter_pos][0]=2317.1394;
+	houseSETTINGS[1][enter_pos][1]=-1011.2269;
+	houseSETTINGS[1][enter_pos][2]=1054.7188;
+
+	houseSETTINGS[2][enter_pos][0]=233.7494;
+	houseSETTINGS[2][enter_pos][1]=1193.7438;
+	houseSETTINGS[2][enter_pos][2]=1084.4156;
+
+	houseSETTINGS[3][enter_pos][0]=224.3135;
+	houseSETTINGS[3][enter_pos][1]=1291.3176;
+	houseSETTINGS[3][enter_pos][2]=1082.1406;
+
+	houseSETTINGS[4][enter_pos][0]=291.9401;
+	houseSETTINGS[4][enter_pos][1]=1480.0013;
+	houseSETTINGS[4][enter_pos][2]=1080.2651;
+
+	houseSETTINGS[5][enter_pos][0]=2260.76;
+	houseSETTINGS[5][enter_pos][1]=-1210.45;
+	houseSETTINGS[5][enter_pos][2]=1049.02;
+
+	houseSETTINGS[6][enter_pos][0]=225.4974;
+	houseSETTINGS[6][enter_pos][1]=1023.3127;
+	houseSETTINGS[6][enter_pos][2]=1084.0122;
+
+	houseSETTINGS[7][enter_pos][0]=373.2839;
+	houseSETTINGS[7][enter_pos][1]=1417.5103;
+	houseSETTINGS[7][enter_pos][2]=1081.3281;
+
+	houseSETTINGS[8][enter_pos][0]=230.9863;
+	houseSETTINGS[8][enter_pos][1]=1114.4048;
+	houseSETTINGS[8][enter_pos][2]=1080.9922;
+
+	houseSETTINGS[9][enter_pos][0]=261.1820;
+	houseSETTINGS[9][enter_pos][1]=1239.1514;
+	houseSETTINGS[9][enter_pos][2]=1084.2578;
+
+	houseSETTINGS[10][enter_pos][0]=447.0287;
+	houseSETTINGS[10][enter_pos][1]=1403.6466;
+	houseSETTINGS[10][enter_pos][2]=1084.3047;
+
+	houseSETTINGS[11][enter_pos][0]=260.5910;
+	houseSETTINGS[11][enter_pos][1]=1288.8820;
+	houseSETTINGS[11][enter_pos][2]=1080.2578;
+
+	houseSETTINGS[12][enter_pos][0]=231.610;
+	houseSETTINGS[12][enter_pos][1]=1072.7865;
+	houseSETTINGS[12][enter_pos][2]=1084.2150;
+
+	houseSETTINGS[13][enter_pos][0]=2237.7930;
+	houseSETTINGS[13][enter_pos][1]=-1075.8685;
+	houseSETTINGS[13][enter_pos][2]=1049.0234;
+
+	houseSETTINGS[14][enter_pos][0]=82.5671;
+	houseSETTINGS[14][enter_pos][1]=1337.6420;
+	houseSETTINGS[14][enter_pos][2]=1088.3672;
+
+	new butas[250];
+	new file[250]; print("Kraunami namai");
+	for(new house=0; house<pickups[1][namai]+1; house++)
+	{
+		format(file,sizeof(file),"saves/house/%i",house);
+		houseDB[house][nkaina]=150000+random(350000);
+		if(!fexist(file))
+		{
+			houseDB[house][housetext] = Create3DTextLabel("",0xFFFFFFFF,PickupIDs[house][0],PickupIDs[house][1],PickupIDs[house][2],25, 0, 1);
+            		format(butas,sizeof(butas),"{FF0000}%i {FF8C00}Namas\nKaina: {FF0000}%i {FF8C00}LT\nSavininkas {FF0000}Nëra\nParduodama",house,houseDB[house][nkaina],houseDB[house][setting]);
+        		Update3DTextLabelText(houseDB[house][housetext],0xFFFFFFFF,butas);
+           		strmid(houseDB[house][owner_name],"no",0,MAX_PLAYER_NAME,MAX_PLAYER_NAME);
+           		continue;
+		}
+		strmid(houseDB[house][owner_name],dini_Get(file,"owner_name"),0,MAX_PLAYER_NAME,MAX_PLAYER_NAME);
+		houseDB[house][setting]=dini_Int(file,"setting");
+	 	houseDB[house][housetext] = Create3DTextLabel("",0xFFFFFFFF,PickupIDs[house][0],PickupIDs[house][1],PickupIDs[house][2],25, 0, 1);
+	  	format(file,sizeof(file),"{FF8C00}%i Namas\nKaina {FF0000}%i LT\n{FF8C00}Savininkas: {FF0000}%s",house,houseDB[house][nkaina],houseDB[house][owner_name]);
+	  	Update3DTextLabelText(houseDB[house][housetext],0xFFFFFFFF,file);
+		printf("Namas %i priklauso %s (vidaus ID: %i)",house,houseDB[house][owner_name],houseDB[house][setting]);
+	}
+	new tekstas[512];
+	print("Kraunami bizniai");
+	for(new house=pickups[0][bizniss]; house<pickups[1][bizniss]+1; house++)
+	{
+		format(file,sizeof(file),"saves/bussines/%i",house);
+		if(!fexist(file)) 
+		{
+			bussinesDB[house][busstext] = Create3DTextLabel("",0xFFFFFFFF,PickupIDs[house][0],PickupIDs[house][1],PickupIDs[house][2],25, 0, 1);
+         		strmid(bussinesDB[house][own_name],"no",0,MAX_PLAYER_NAME,MAX_PLAYER_NAME);
+        		format(tekstas,sizeof(tekstas),"{FF8C00}%s\nKaina: {FF0000}%i {FF8C00}LT\nDidþiausias galimas pelnas: {FF0000}%i {FF8C00}LT á minutæ\nSavininkas: {FF0000}Nëra\n\nParduodama",bussinesDB[house][pavadinimas],bussinesDB[house][bizkaina],bussinesDB[house][moka],bussinesDB[house][own_name]);
+         		Update3DTextLabelText(bussinesDB[house][busstext],0xFFFFFFFF,tekstas);	
+			continue;
+		}
+		strmid(bussinesDB[house][own_name],dini_Get(file,"owner_name"),0,MAX_PLAYER_NAME,MAX_PLAYER_NAME);
+		printf("Biznis %i priklauso %s",house,bussinesDB[house][own_name]);
+      		bussinesDB[house][busstext] = Create3DTextLabel("",0xFFFFFFFF,PickupIDs[house][0],PickupIDs[house][1],PickupIDs[house][2],25, 0, 1);
+        	format(tekstas,sizeof(tekstas),"{FF8C00}%s\nKaina: {FF0000}%i {FF8C00}LT\nDidþiausias galimas pelnas: {FF0000}%i {FF8C00}LT á minutæ\nSavininkas: {FF0000}%s",bussinesDB[house][pavadinimas],bussinesDB[house][bizkaina],bussinesDB[house][moka],bussinesDB[house][own_name]);
+      		Update3DTextLabelText(bussinesDB[house][busstext],0xFFFFFFFF,tekstas);
+	}
+}
+

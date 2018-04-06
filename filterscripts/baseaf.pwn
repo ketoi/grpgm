@@ -96,6 +96,7 @@ public OnPlayerDisconnect(playerid, reason)
 
 public OnPlayerCommandText(playerid, cmdtext[])
 {
+
 	if(IsPlayerFlooding(playerid) && !IsPlayerAdmin(playerid))
 	{
 		SendClientMessage(playerid, 0xFF0000FF, "* You can only use commands once every two seconds.");
